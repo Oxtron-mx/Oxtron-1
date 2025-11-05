@@ -36,12 +36,13 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO }}/${{ env.SERVICE_NAME }}
+          IMAGE="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO }}/${{ env.SERVICE_NAME }}"
+          echo "Building image: $IMAGE"
           docker buildx create --use || true
           docker buildx build \
             --platform linux/amd64 \
-            --tag $${IMAGE}:latest \
-            --tag $${IMAGE}:${{ github.sha }} \
+            --tag "$IMAGE:latest" \
+            --tag "$IMAGE:${{ github.sha }}" \
             --push .
 
       - name: Deploy to Cloud Run
