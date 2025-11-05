@@ -3,6 +3,7 @@
 import {getAuthenticatedUserId, handleError} from "@/actions/shared";
 import axiosInstance from '@/lib/axios-instance'
 import {Facility} from '@/lib/validation'
+import { getFacilitiesByUserIdData } from "@/utils/facilities";
 
 export async function createFacility(facility: Facility): Promise<ApiResponse<string>> {
   try {
@@ -23,14 +24,23 @@ export async function createFacility(facility: Facility): Promise<ApiResponse<st
 
 export async function getFacilitiesByUserId(): Promise<ApiResponse<Facility[]>> {
   try {
-    const idUser = await getAuthenticatedUserId();
-    const response = await axiosInstance.get('/Facilities/Mostrar_Facilities_User', {params: {idUser}})
-    const data: Facility[] = response.data as Facility[]
-
-    return {
+    // const idUser = await getAuthenticatedUserId();
+    // const response = await axiosInstance.get('/api/facilities', {params: {idUser}})
+    // const data: Facility[] = response.data as Facility[]
+    const newData = getFacilitiesByUserIdData.data.map(facility => ({
+          idFacility: facility.name,
+          propertyStatus: facility.property_status,
+          city: facility.city_name,
+          country: facility.country_name,
+          active: 1,
+          idControlFacility: 0,
+          idUserControl: 66,
+          description: facility.description,
+      }))
+  return {
       success: true,
       status: 200,
-      data: data.filter(status => status.active === 1),
+      data: newData,
       message: 'Successfully getting facilities',
     }
   } catch (error) {
