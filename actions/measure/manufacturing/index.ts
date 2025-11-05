@@ -4,20 +4,11 @@ import {getAuthenticatedUserId, handleError} from "@/actions/shared";
 import axiosInstance from "@/lib/axios-instance";
 import {Manufacturing} from "@/lib/validation"
 import {ComboTypeOfEquipment} from "@/constants/types";
-import { getManufacturingByUserIdData, getManufacturingByIdData } from "@/utils/manufacturing";
-import { API_BASE_URL, USE_MOCK_DATA, getApiKey } from "@/utils/api-config";
+// removed mock utils
+import { API_BASE_URL, getApiKey } from "@/utils/api-config";
 
 export async function createManufacturing(manufacturing: Manufacturing) {
   try {
-    if (USE_MOCK_DATA) {
-      return {
-        success: true,
-        status: 201,
-        data: `Manufacturing '${manufacturing.process || 'Manufacturing'}' creado exitosamente`,
-        message: `Manufacturing '${manufacturing.process || 'Manufacturing'}' creado exitosamente`,
-      }
-    }
-
     const apiKey = await getApiKey();
     const response = await axiosInstance.post(`${API_BASE_URL}/api/manufacturing?api_key=${apiKey}`, {
       name: manufacturing.process,
@@ -40,26 +31,6 @@ export async function createManufacturing(manufacturing: Manufacturing) {
 
 export async function getManufacturingByUserId(): Promise<ApiResponse<Manufacturing[]>> {
   try {
-    if (USE_MOCK_DATA) {
-      const newData: Manufacturing[] = getManufacturingByUserIdData.data.map((manufacturing, index) => ({
-        idControlManufacturing: manufacturing.id || index + 1,
-        idUserControl: 66,
-        process: manufacturing.process_name,
-        idFacility: 1, // TODO: Mapear desde facility_name
-        idTypeEquipment: 1, // TODO: Mapear desde equipment_name
-        idTypeFuelUsed: 1, // TODO: Mapear desde emission_factor_name
-        idTypeEquipmentCode: 0,
-        active: 1,
-      }))
-
-      return {
-        success: true,
-        status: 200,
-        data: newData,
-        message: 'Successfully getting manufacturing',
-      }
-    }
-
     const apiKey = await getApiKey();
     const response = await axiosInstance.get(`${API_BASE_URL}/api/manufacturing?api_key=${apiKey}`)
     const apiData = response.data?.data || []
@@ -88,27 +59,6 @@ export async function getManufacturingByUserId(): Promise<ApiResponse<Manufactur
 
 export async function getManufacturingById(process: string): Promise<ApiResponse<Manufacturing | null>> {
   try {
-    if (USE_MOCK_DATA) {
-      const mockManufacturing = getManufacturingByIdData.data;
-      const manufacturing: Manufacturing = {
-        idControlManufacturing: mockManufacturing.id,
-        idUserControl: 66,
-        process: mockManufacturing.process_name,
-        idFacility: 1, // TODO: Mapear desde facility_name
-        idTypeEquipment: 1, // TODO: Mapear desde equipment_name
-        idTypeFuelUsed: 1, // TODO: Mapear desde emission_factor_name
-        idTypeEquipmentCode: 0,
-        active: 1,
-      }
-
-      return {
-        success: true,
-        status: 200,
-        message: 'success',
-        data: manufacturing,
-      }
-    }
-
     // Buscar por ID si process es un número
     const manufacturingId = parseInt(process) || 1;
     const apiKey = await getApiKey();
@@ -148,15 +98,6 @@ export async function getManufacturingById(process: string): Promise<ApiResponse
 
 export async function updateManufacturing(manufacturing: Manufacturing): Promise<ApiResponse<string>> {
   try {
-    if (USE_MOCK_DATA) {
-      return {
-        success: true,
-        status: 200,
-        message: `Manufacturing '${manufacturing.process || 'Manufacturing'}' actualizado exitosamente`,
-        data: `Manufacturing '${manufacturing.process || 'Manufacturing'}' actualizado exitosamente`,
-      }
-    }
-
     const apiKey = await getApiKey();
     const response = await axiosInstance.put(
       `${API_BASE_URL}/api/manufacturing/${manufacturing.idControlManufacturing}?api_key=${apiKey}`,
@@ -182,15 +123,6 @@ export async function updateManufacturing(manufacturing: Manufacturing): Promise
 
 export async function deleteManufacturing(IdManufacturing: number) {
   try {
-    if (USE_MOCK_DATA) {
-      return {
-        success: true,
-        status: 204,
-        message: 'Successfully deleted manufacturing',
-        data: 'Successfully deleted manufacturing',
-      }
-    }
-
     const apiKey = await getApiKey();
     const response = await axiosInstance.delete(`${API_BASE_URL}/api/manufacturing/${IdManufacturing}?api_key=${apiKey}`)
     const data = response.data?.message || 'Successfully deleted manufacturing'

@@ -3,20 +3,11 @@
 import {getAuthenticatedUserId, handleError} from "@/actions/shared";
 import axiosInstance from "@/lib/axios-instance";
 import {Logistic} from "@/lib/validation"
-import { getLogisticsByUserIdData, getLogisticByIdData } from "@/utils/logistics";
-import { API_BASE_URL, USE_MOCK_DATA, getApiKey, mapPropertyStatusToNumber } from "@/utils/api-config";
+// removed mock utils
+import { API_BASE_URL, getApiKey, mapPropertyStatusToNumber } from "@/utils/api-config";
 
 export async function createLogistic(logistic: Logistic): Promise<ApiResponse<string>> {
   try {
-    if (USE_MOCK_DATA) {
-      return {
-        success: true,
-        status: 201,
-        data: `Logistics '${logistic.name || 'Logistics'}' creado exitosamente`,
-        message: `Logistics '${logistic.name || 'Logistics'}' creado exitosamente`,
-      }
-    }
-
     const apiKey = await getApiKey();
     const response = await axiosInstance.post(`${API_BASE_URL}/api/logistics?api_key=${apiKey}`, {
       name: logistic.name || '',
@@ -43,35 +34,6 @@ export async function createLogistic(logistic: Logistic): Promise<ApiResponse<st
 
 export async function getLogisticsByUserId(): Promise<ApiResponse<Logistic[]>> {
   try {
-    if (USE_MOCK_DATA) {
-      const newData: Logistic[] = getLogisticsByUserIdData.data.map((logistic, index) => ({
-        idControlLogistics: logistic.id || index + 1,
-        idUserControl: 66,
-        origin: logistic.origin_name,
-        destination: logistic.destination_name,
-        originzc: '',
-        destinationzc: '',
-        loadLogistic: logistic.load,
-        client: logistic.client_name,
-        idCboStatus: mapPropertyStatusToNumber(logistic.property_status),
-        name: logistic.name,
-        idTravelCboType: 1, // TODO: Mapear
-        idCboModel: 1, // TODO: Mapear desde vehicle_model_name
-        idCboBrand: 1, // TODO: Mapear
-        licensePlate: '',
-        propertyStatus: mapPropertyStatusToNumber(logistic.property_status),
-        idControlVehicle: 1, // TODO: Mapear
-        active: 1,
-      }))
-
-      return {
-        success: true,
-        status: 200,
-        data: newData,
-        message: 'Successfully getting logistic',
-      }
-    }
-
     const apiKey = await getApiKey();
     const response = await axiosInstance.get(`${API_BASE_URL}/api/logistics?api_key=${apiKey}`)
     const apiData = response.data?.data || []
@@ -109,36 +71,6 @@ export async function getLogisticsByUserId(): Promise<ApiResponse<Logistic[]>> {
 
 export async function getLogisticById(origin: string, destination: string): Promise<ApiResponse<Logistic | null>> {
   try {
-    if (USE_MOCK_DATA) {
-      const mockLogistic = getLogisticByIdData.data;
-      const logistic: Logistic = {
-        idControlLogistics: mockLogistic.id,
-        idUserControl: 66,
-        origin: mockLogistic.origin_name,
-        destination: mockLogistic.destination_name,
-        originzc: '',
-        destinationzc: '',
-        loadLogistic: mockLogistic.load,
-        client: mockLogistic.client_name,
-        idCboStatus: mapPropertyStatusToNumber(mockLogistic.property_status),
-        name: mockLogistic.name,
-        idTravelCboType: 1, // TODO: Mapear
-        idCboModel: 1, // TODO: Mapear
-        idCboBrand: 1, // TODO: Mapear
-        licensePlate: '',
-        propertyStatus: mapPropertyStatusToNumber(mockLogistic.property_status),
-        idControlVehicle: 1, // TODO: Mapear
-        active: 1,
-      }
-
-      return {
-        success: true,
-        status: 200,
-        message: 'success',
-        data: logistic,
-      }
-    }
-
     // Buscar por ID si origin/destination son números
     const logisticId = parseInt(origin) || 1;
     const apiKey = await getApiKey();
@@ -187,15 +119,6 @@ export async function getLogisticById(origin: string, destination: string): Prom
 
 export async function updateLogistic(logistic: Logistic): Promise<ApiResponse<string>> {
   try {
-    if (USE_MOCK_DATA) {
-      return {
-        success: true,
-        status: 200,
-        message: `Logistics '${logistic.name || 'Logistics'}' actualizado exitosamente`,
-        data: `Logistics '${logistic.name || 'Logistics'}' actualizado exitosamente`,
-      }
-    }
-
     const apiKey = await getApiKey();
     const response = await axiosInstance.put(
       `${API_BASE_URL}/api/logistics/${logistic.idControlLogistics}?api_key=${apiKey}`,
@@ -225,15 +148,6 @@ export async function updateLogistic(logistic: Logistic): Promise<ApiResponse<st
 
 export async function deleteLogistic(IdLogistics: number): Promise<ApiResponse<string>> {
   try {
-    if (USE_MOCK_DATA) {
-      return {
-        success: true,
-        status: 204,
-        message: 'Successfully deleted logistic',
-        data: 'Successfully deleted logistic',
-      }
-    }
-
     const apiKey = await getApiKey();
     const response = await axiosInstance.delete(`${API_BASE_URL}/api/logistics/${IdLogistics}?api_key=${apiKey}`)
     const data = response.data?.message || 'Successfully deleted logistic'

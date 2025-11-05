@@ -4,6 +4,17 @@ import { auth } from '@/auth';
 
 export async function middleware(request: NextRequest) {
   const { nextUrl } = request;
+  const pathname = nextUrl.pathname;
+
+  // Skip middleware for assets and files
+  if (
+    pathname.startsWith('/_next') ||
+    pathname === '/favicon.ico' ||
+    pathname === '/SwrveWorker.js' ||
+    pathname.includes('.')
+  ) {
+    return NextResponse.next();
+  }
   const session = await auth();
   const isAuthenticated = !!session?.user;
 

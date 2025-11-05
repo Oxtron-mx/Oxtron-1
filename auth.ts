@@ -4,6 +4,7 @@ import axiosInstance from "@/lib/axios-instance";
 import { IUser } from "@/constants/types";
 
 export const { handlers: { GET, POST }, signIn, signOut, auth } = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET,
   providers: [
     Credentials({
       credentials: {
