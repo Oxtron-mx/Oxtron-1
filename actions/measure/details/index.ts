@@ -181,8 +181,8 @@ export async function createFacilityDetails(facilityDetails: FacilityDescription
       const units = muResp.data?.data || []
       if (facilityDetails.unit) {
         const match = units.find((u: any) => (
-          u.symbol?.toLowerCase() === facilityDetails.unit.toLowerCase() ||
-          u.name?.toLowerCase() === facilityDetails.unit.toLowerCase()
+          u.symbol?.toLowerCase() === facilityDetails.unit?.toLowerCase() ||
+          u.name?.toLowerCase() === facilityDetails.unit?.toLowerCase()
         ))
         if (match) unitId = match.id
       }
