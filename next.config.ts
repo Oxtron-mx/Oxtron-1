@@ -1,9 +1,10 @@
 module.exports = {
+  output: 'standalone',
   async rewrites() {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://oxtronapi.somee.com/:path',
+        destination: 'https://oxtron-api-t5c24bp2fa-uc.a.run.app/:path',
       },
     ];
   },
