@@ -1,9 +1,17 @@
-'use server'
+"use server";
 
-import axios, { AxiosError } from 'axios'
-import {auth} from "@/auth";
-import axiosInstance from '@/lib/axios-instance'
-import {ComboBrand, ComboFuel, ComboModel, ComboType, ICboModeTransport, Status} from "@/constants/types";
+import axios from "axios";
+import { auth } from "@/auth";
+import axiosInstance from "@/lib/axios-instance";
+import {
+  ComboBrand,
+  ComboFuel,
+  ComboModel,
+  ComboType,
+  ICboModeTransport,
+  Status,
+} from "@/constants/types";
+import { API_BASE_URL } from "@/utils/api-config";
 
 declare global {
   type ApiResponse<T> = {
@@ -19,14 +27,16 @@ export async function handleError(error: unknown): Promise<ApiResponse<any>> {
     console.error(`Axios error: ${error.message}`, error.response?.data);
     return {
       success: false,
-      message: error.response?.data?.message || 'An error occurred while processing the request.',
+      message:
+        error.response?.data?.message ||
+        "An error occurred while processing the request.",
       status: error.response?.status || 500,
     };
   } else {
-    console.error('Unexpected error:', error);
+    console.error("Unexpected error:", error);
     return {
       success: false,
-      message: (error as Error)?.message || 'An unknown error occurred.',
+      message: (error as Error)?.message || "An unknown error occurred.",
       status: 500,
     };
   }
@@ -36,146 +46,210 @@ export async function getAuthenticatedUserId(): Promise<number> {
   const session = await auth();
   const idUser: number = Number(session?.user?.id ?? 0);
 
-  if (idUser === 0) throw new Error('User session not found or invalid');
+  if (idUser === 0) throw new Error("User session not found or invalid");
   return idUser;
 }
 
 export async function getCboStatuses(): Promise<ApiResponse<Status[]>> {
   try {
-    const response = await axiosInstance.get('/cboStatus/Mostrar_cboStatus')
-    const data: Status[] = response.data as Status[]
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/catalogs/property_status`
+    );
+    const apiData = (response.data?.data || []) as Array<{
+      id: number;
+      name: string;
+    }>;
+    const data: Status[] = apiData.map((s) => ({
+      idStatus: s.id,
+      description: s.name,
+      active: 1,
+    }));
 
     return {
       success: true,
       status: 200,
-      message: 'Success',
-      data: data.filter(status => status.active === 1),
-    }
-  } catch (error) {
-    return handleError(error)
-  }
-}
-
-export async function getCboBrands(): Promise<ApiResponse<ComboBrand[]>> {
-  try {
-    const response = await axiosInstance.get('/VehiclesCboBrands/Mostrar_VehiclesCboBrands')
-    const data: ComboBrand[] = response.data as ComboBrand[]
-
-    return {
-      success: true,
-      status: 200,
-      message: 'Success',
-      data: data.filter(status => status.active === 1),
-    }
-  } catch (error) {
-    return handleError(error)
-  }
-}
-
-export async function getCboModelsBrand(idBrand: number): Promise<ApiResponse<ComboModel[]>> {
-  try {
-    const response = await axiosInstance.get('/VehiclesCboModels/Mostrar_VehiclesCboModels_Brand', {
-      params: {idBrand},
-    })
-    const data: ComboModel[] = response.data as ComboModel[]
-
-    return {
-      success: true,
-      status: 200,
-      message: 'Success',
-      data: data.filter(status => status.active === 1),
-    }
-  } catch (error) {
-    return handleError(error)
-  }
-}
-
-export async function getCboTypes(): Promise<ApiResponse<ComboType[]>> {
-  try {
-    const response = await axiosInstance.get('/VehiclesCboTypes/Mostrar_VehiclesCboTypes')
-    const data: ComboType[] = response.data as ComboType[]
-
-    return {
-      success: true,
-      status: 200,
-      message: 'Success',
-      data: data.filter(status => status.active === 1),
-    }
-  } catch (error) {
-    return handleError(error)
-  }
-}
-
-export async function getCboModeTransport(): Promise<ApiResponse<ICboModeTransport[]>> {
-  try {
-    const response = await axiosInstance.get('/CommutingCboModeTransporte/Mostrar_CommutingCboModeTransporte')
-    const data: ICboModeTransport[] = response.data as ICboModeTransport[]
-
-    return {
-      success: true,
-      status: 200,
-      message: 'Success',
-      data: data.filter(status => status.active === 1),
-    }
+      message: "Success",
+      data,
+    };
   } catch (error) {
     return handleError(error);
   }
 }
 
-export async function getCboElectricityType() {
+export async function getCboBrands(): Promise<ApiResponse<ComboBrand[]>> {
   try {
-    const response = await axiosInstance.get('/cboElectricityType/Mostrar_cboElectricityType');
-    return {
-      status: response.status,
-      success: true,
-      data: response.data
-    }
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/catalogs/vehicle_brand`
+    );
+    const apiData = (response.data?.data || []) as Array<{
+      id: number;
+      name: string;
+    }>;
+    const data: ComboBrand[] = apiData.map((b) => ({
+      idVehicleCboBrand: b.id,
+      description: b.name,
+      active: 1,
+    }));
+
+    return { success: true, status: 200, message: "Success", data };
   } catch (error) {
-    const axiosError = error as unknown as AxiosError
-    return { status: axiosError.response?.status, success: false, data: axiosError.response?.data }
+    return handleError(error);
+  }
+}
+
+export async function getCboModelsBrand(
+  idBrand: number
+): Promise<ApiResponse<ComboModel[]>> {
+  try {
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/catalogs/vehicle-brand/${idBrand}/models`
+    );
+    const apiData = (response.data?.data || []) as Array<{
+      id: number;
+      name: string;
+      brand_name?: string;
+      year?: number;
+    }>;
+    const data: ComboModel[] = apiData.map((m) => ({
+      idVehicleCboModel: m.id,
+      idVehicleCboBrand: idBrand,
+      year: m.year ? String(m.year) : "",
+      description: m.name,
+      active: 1,
+    }));
+
+    return { success: true, status: 200, message: "Success", data };
+  } catch (error) {
+    return handleError(error);
+  }
+}
+
+export async function getCboTypes(): Promise<ApiResponse<ComboType[]>> {
+  try {
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/catalogs/vehicle_type`
+    );
+    const apiData = (response.data?.data || []) as Array<{
+      id: number;
+      name: string;
+    }>;
+    const data: ComboType[] = apiData.map((t) => ({
+      idVehicleCboType: t.id,
+      description: t.name,
+      units: "",
+      active: 1,
+    }));
+
+    return { success: true, status: 200, message: "Success", data };
+  } catch (error) {
+    return handleError(error);
+  }
+}
+
+export async function getCboModeTransport(): Promise<
+  ApiResponse<ICboModeTransport[]>
+> {
+  try {
+    const response = await axiosInstance.get(
+      "/CommutingCboModeTransporte/Mostrar_CommutingCboModeTransporte"
+    );
+    const data: ICboModeTransport[] = response.data as ICboModeTransport[];
+
+    return {
+      success: true,
+      status: 200,
+      message: "Success",
+      data: data.filter((status) => status.active === 1),
+    };
+  } catch (error) {
+    return handleError(error);
+  }
+}
+
+export async function getCboElectricityType(): Promise<
+  ApiResponse<ComboFuel[]>
+> {
+  try {
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/catalogs/emission-factor-types`
+    );
+    const apiData = (response.data?.data || []) as Array<{
+      id: number;
+      name: string;
+    }>;
+    const data: ComboFuel[] = apiData.map((e) => ({
+      idControl: e.id,
+      description: e.name,
+      units: "",
+    }));
+
+    return { success: true, status: 200, message: "Success", data };
+  } catch (error) {
+    return handleError(error);
   }
 }
 
 export async function getCboFuelType(): Promise<ApiResponse<ComboFuel[]>> {
   try {
-    const response = await axiosInstance.get('/cboFuelType/Mostrar_cboFuelType');
-    const data: ComboFuel[] = response.data as ComboFuel[]
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/catalogs/fuel_type`
+    );
+    const apiData = (response.data?.data || []) as Array<{
+      id: number;
+      name: string;
+    }>;
+    const data: ComboFuel[] = apiData.map((f) => ({
+      idControl: f.id,
+      description: f.name,
+      units: "",
+    }));
 
-    return {
-      success: true,
-      status: 200,
-      message: 'Success',
-      data,
-    }
+    return { success: true, status: 200, message: "Success", data };
   } catch (error) {
-    return handleError(error)
+    return handleError(error);
   }
 }
 
-export async function getCboGasType() {
+export async function getCboGasType(): Promise<ApiResponse<ComboFuel[]>> {
   try {
-    const response = await axiosInstance.get('/cboGasType/Mostrar_cboGasType');
-    return {
-      status: response.status,
-      success: true,
-      data: response.data
-    }
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/catalogs/emission-factor-subtypes`
+    );
+    const apiData = (response.data?.data || []) as Array<{
+      id: number;
+      name: string;
+    }>;
+    const data: ComboFuel[] = apiData.map((g) => ({
+      idControl: g.id,
+      description: g.name,
+      units: "",
+    }));
+
+    return { success: true, status: 200, message: "Success", data };
   } catch (error) {
-    const axiosError = error as unknown as AxiosError
-    return { status: axiosError.response?.status, success: false, data: axiosError.response?.data }
+    return handleError(error);
   }
 }
 
-export async function getCboRefrigerantsType() {
+export async function getCboRefrigerantsType(): Promise<
+  ApiResponse<ComboFuel[]>
+> {
   try {
-    const response = await axiosInstance.get('/cboRefrigerantsType/Mostrar_cboRefrigerantsType');
-    return {
-      status: response.status,
-      success: true,
-      data: response.data
-    }
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/catalogs/emission-factor-subtypes`
+    );
+    const apiData = (response.data?.data || []) as Array<{
+      id: number;
+      name: string;
+    }>;
+    const data: ComboFuel[] = apiData.map((r) => ({
+      idControl: r.id,
+      description: r.name,
+      units: "",
+    }));
+
+    return { success: true, status: 200, message: "Success", data };
   } catch (error) {
-    const axiosError = error as unknown as AxiosError
-    return { status: axiosError.response?.status, success: false, data: axiosError.response?.data }
+    return handleError(error);
   }
 }

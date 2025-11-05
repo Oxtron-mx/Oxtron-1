@@ -2,6 +2,7 @@
 
 import { auth } from '@/auth'
 import { CBOType, ReportHeader, VLabel } from '@/constants/types'
+import { API_BASE_URL } from '@/utils/api-config'
 import axiosInstance from '@/lib/axios-instance'
 import { Communicate } from '@/lib/validation'
 import { getAuthenticatedUserId } from '@/actions/shared'
@@ -95,10 +96,11 @@ export async function showReport(idUserControl: number, startDate: string, endDa
 
 export async function getCboTypes(): Promise<VLabel[]> {
   try {
-    const response = await axiosInstance.get('/cboType/Mostrar_cboType')
-    const data = response.data as CBOType[]
+    // Map to new catalog: emission factor types
+    const response = await axiosInstance.get(`${API_BASE_URL}/api/catalogs/emission-factor-types`)
+    const data = (response.data?.data || []) as Array<{ id: number; name: string }>
 
-    return data.map(type => ({ value: type.idType.toString(), label: type.description }))
+    return data.map((type) => ({ value: type.id.toString(), label: type.name }))
   } catch (error) {
     console.error('Error getting types', error)
     throw error

@@ -8,14 +8,15 @@ import axiosInstance from "@/lib/axios-instance"
 export async function fetchDash(): Promise<ControlData[]> {
     try {
         const session = await auth()
-        const idUserControl: number = Number(session?.user?.id) ?? 0
+    const idUserControl: number = Number(session?.user?.id ?? 0)
 
         console.log({idUserControl})
-    
-        const response = await axiosInstance.get(`/Dashboard/Mostrar_Dashboard_User?idUser=${idUserControl}`);
+    if (!idUserControl || Number.isNaN(idUserControl)) {
+      return []
+    }
 
-        // @ts-ignore
-        return response.data as ControlData[]
+    // Backend actual no expone dashboard; por demo devolvemos arreglo vacío evitando 404
+    return []
     } catch (error) {
         throw error
     }

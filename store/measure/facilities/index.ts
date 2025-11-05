@@ -46,6 +46,7 @@ export const useFacilityStore = create<FacilityStore>((set) => ({
     try {
       const response = await getFacilitiesByUserId();
       set({facilities: response.data, error: null, loading: false});
+      console.log(response)
     } catch (error) {
       set({error: 'Failed to fetch facilities', loading: false});
     }
