@@ -1,39 +1,50 @@
 'use server'
-import { revalidatePath } from 'next/cache'
-import { auth, signIn, signOut } from '@/auth'
-import { forgotPasswordProps, IUser, updatePasswordProps } from '@/constants/types'
+import {auth, signIn, signOut} from '@/auth'
+import {ComboRole, forgotPasswordProps, IUser, updatePasswordProps} from '@/constants/types'
 import axiosInstance from '@/lib/axios-instance'
-import { UpdateUser, UserRegister, UserRegisterByCompanyId } from '@/lib/validation'
-import { AxiosError } from 'axios'
+import {UpdateUser, UserRegister, UserRegisterByCompanyId} from '@/lib/validation'
+import {AxiosError} from 'axios'
 
-export async function login({ email, password }: Readonly<{ email: string, password: string }>) {
+export async function login({ email, password }: { email: string; password: string }) {
   try {
-    const response = await signIn('credentials', {
+    const result = await signIn("credentials", {
       email,
       password,
-      redirect: true,
-      redirectTo: '/dashboard'
-    })
-    revalidatePath('/')
-    return response
-  } catch (err) {
-    throw err
+      redirect: false,
+    });
+
+    if (result?.error) {
+      console.error("Login error:", result.error);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Login error:", error);
+    return false;
   }
 }
 
 export async function register(user: UserRegister) {
-  const { confirmPassword, ...data } = user
+  try {
+    const session = await auth()
+    const idUserControl: number = Number(session?.user?.id) ?? 0
 
-  console.log({ data })
+    if (idUserControl === 0) return
 
-  const response = await axiosInstance.post('/UsersControl/Registrar_Usuarios', null, {
-    params: data,
-    headers: {
-      'accept': '*/*'
-    }
-  })
+    const { confirmPassword, ...data } = user
 
-  return { status: response.status, success: true, data: response.data }
+    const response = await axiosInstance.post('/UsersControl/Registrar_Usuarios', '', {
+      params: {
+        ...data
+      },
+    })
+
+    return { status: response.status, success: true, data: response.data }
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
 }
 
 export async function registerByCompanyId(user: UserRegisterByCompanyId) {
@@ -58,7 +69,7 @@ export async function registerByCompanyId(user: UserRegisterByCompanyId) {
   }
 }
 
-export async function updateUser(user: UpdateUser) {
+export async function updateUser (user: UpdateUser) {
   try {
     const session = await auth()
     const idUserControl: number = Number(session?.user?.id) ?? 0
@@ -101,33 +112,33 @@ export async function disableUserById(idUser: number) {
   return { success: true, status: response.status, data: response.data }
 }
 
-export async function forgotPassword({ email }: forgotPasswordProps) {
+export async function forgotPassword ( {email}: forgotPasswordProps ) {
   try {
-    const response = await axiosInstance.get(`/UsersControl/Mostrar_Usuarios_Forget_Pass?email=${ email }`)
+    const response = await axiosInstance.get(`/UsersControl/Mostrar_Usuarios_Forget_Pass?email=${email}`);
 
     // @ts-ignore
     return response.status
   } catch (error) {
-    throw error
-  }
+      throw error
+  }  
 }
 
 export async function updatePassword({ email, passwordOld, passwordNew }: updatePasswordProps) {
   try {
-    const url = `/UsersControl/NewPass_Usuarios`
-
+    const url = `/UsersControl/NewPass_Usuarios`;
+    
     const response = await axiosInstance.post(url, null, {
       params: {
         email,
         passwordOld,
         passwordNew,
       },
-    })
+    });
 
-    return response.data
+    return response.data;
   } catch (error) {
-    console.error('Error updating password:', error)
-    throw error
+    console.error('Error updating password:', error);
+    throw error;
   }
 }
 
@@ -141,4 +152,9 @@ export async function getUserBySession(): Promise<IUser> {
 
 export async function logout() {
   await signOut({ redirectTo: '/' })
+}
+
+export async function getCboRoles(): Promise<ComboRole[]> {
+  const roles = await axiosInstance.get('/cboRoles/Mostrar_cboRoles');
+  return roles.data as ComboRole[];
 }

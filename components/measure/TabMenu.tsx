@@ -8,12 +8,11 @@ import { cn } from '@/lib/utils'
 
 type Props = {
   items: string[];
-  cards: IMeasureCard[];
+  cards: Card[];
   iconButton?: IIconButton[];
-  appendTitle: boolean
 };
 
-const TabMenu = ({ items, cards, iconButton, appendTitle = false }: Props) => {
+const TabMenu = ({ items, cards, iconButton }: Props) => {
   const [item, setItem] = useState<string>(items[0])
 
   return (
@@ -56,7 +55,7 @@ const TabMenu = ({ items, cards, iconButton, appendTitle = false }: Props) => {
         }
       </TabsList>
       <div className="mt-8">
-        <MeasureContent cards={ cards } scope={ item } appendTitle={ appendTitle }/>
+        <MeasureContent cards={ cards } scope={ item }/>
       </div>
     </Tabs>
   )

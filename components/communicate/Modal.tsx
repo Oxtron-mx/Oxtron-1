@@ -53,12 +53,14 @@ const FormModal: React.FC<{ open: boolean; onClose: () => void; }> = ({ open, on
       toast({
         title: 'Success',
         description: 'This user has been inserted successfully',
+      className: 'bg-black',
       });
       form.reset();
     } catch (error) {
       toast({
         title: 'Uh oh! Something went wrong.',
         description: 'There was a problem with your request.',
+      className: 'bg-black',
       });
       console.error(error);
     } finally {

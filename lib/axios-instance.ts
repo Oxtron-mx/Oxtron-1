@@ -1,10 +1,11 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-  baseURL: 'https://oxtron-api-t5c24bp2fa-uc.a.run.app',
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000',
   timeout: 100000,
   headers: {
     'Content-Type': 'application/json',
+    'X-API-Key': process.env.NEXT_PUBLIC_X_API_KEY || '',
   },
 })
 

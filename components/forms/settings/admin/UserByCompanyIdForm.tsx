@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+"use client"
+import React, {useContext, useEffect, useState} from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getUserBySession, registerByCompanyId } from '@/actions/auth'
@@ -8,12 +9,21 @@ import CustomFormField, { FormFieldType } from '@/components/CustomFormField'
 import SubmitButton from '@/components/SubmitButton'
 import { roles } from '@/constants/auth'
 import { UserRegisterByCompanyId, UserRegisterByCompanyIdValidation } from '@/lib/validation'
+import { getDictionary } from "@/lib/dictionary";
+import { usePathname } from "next/navigation";
+import { Locale } from "@/i18n.config";
+import Loading from '@/components/loading/LoadingBlack';
+import {AdminAccountContext, IAdminAccountContext} from "@/context/setting/admin-account";
 
 const UserByCompanyIdForm = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false)
   const { toast } = useToast()
+  const pathname = usePathname();
+  const lang: Locale = (pathname?.split("/")[1] as Locale) || "en";
+  const [loading, setLoading] = useState(true);
+  const [dictionary, setDictionary] = useState<any>(null);
 
   const form = useForm<UserRegisterByCompanyId>({
     resolver: zodResolver(UserRegisterByCompanyIdValidation),
@@ -31,31 +41,60 @@ const UserByCompanyIdForm = () => {
     }
   })
 
+  const {loadData, handleCloseRegisterUserModal} = useContext(AdminAccountContext) as IAdminAccountContext
 
-  // TODO: check user registration by company - status 500
   async function onSubmit(user: UserRegisterByCompanyId) {
     setIsLoading(true)
 
     try {
       const session = await getUserBySession()
-
-      console.log({ ...user, idCompany: session.idCompany })
-
       await registerByCompanyId({ ...user, idCompany: session.idCompany })
       toast({
-        title: 'Success',
-        description: 'This user has been created successfully',
+        title: dictionary.modal.success,
+        description: dictionary.modal.description,
+        className: 'bg-black',
       })
       form.reset()
+      await loadData()
+      handleCloseRegisterUserModal()
     } catch (error) {
       toast({
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.',
+        title: dictionary.modal.error,
+        description: dictionary.modal.descript,
+        className: 'bg-black',
       })
       console.error(error)
     } finally {
       setIsLoading(false)
     }
+  }
+
+  useEffect(() => {
+    const loadDictionary = async () => {
+      try {
+        setLoading(true);
+        const dict = await getDictionary(lang);
+        setDictionary(dict.pages.settings.admin);
+      } catch (error) {
+        console.error("Error loading dictionary:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDictionary();
+  }, [lang]);
+
+  useEffect(() => {
+    console.log(form.watch(['idUSerType']))
+  }, [form.watch(['idUSerType'])]);
+
+  if (loading || !dictionary) {
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <Loading />
+      </div>
+    );
   }
 
   return (
@@ -65,37 +104,44 @@ const UserByCompanyIdForm = () => {
           <CustomFormField
             fieldType={ FormFieldType.INPUT }
             control={ form.control }
-            placeholder="First Name"
-            label="First Name"
+            placeholder={dictionary.modal.name}
+            label={dictionary.modal.name}
             name="firstName"
           />
           <CustomFormField
             fieldType={ FormFieldType.INPUT }
             control={ form.control }
-            placeholder="Last Name"
-            label="Last Name"
+            placeholder={dictionary.modal.last}
+            label={dictionary.modal.last}
             name="lastName"
           />
           <CustomFormField
             fieldType={ FormFieldType.SELECT }
             control={ form.control }
-            placeholder="Role"
-            label="Role"
-            name="role"
+            placeholder={dictionary.modal.role}
+            label={dictionary.modal.role}
+            name="idUSerType"
             options={ roles }
           />
           <CustomFormField
             fieldType={ FormFieldType.INPUT }
             control={ form.control }
-            placeholder="Email"
-            label="Email"
+            placeholder={dictionary.modal.typeOfUser}
+            label={dictionary.modal.typeOfUser}
+            name="role"
+          />
+          <CustomFormField
+            fieldType={ FormFieldType.INPUT }
+            control={ form.control }
+            placeholder={dictionary.modal.email}
+            label={dictionary.modal.email}
             name="email"
           />
           <CustomFormField
             fieldType={ FormFieldType.PASSWORD }
             control={ form.control }
-            placeholder="Password"
-            label="Password"
+            placeholder={dictionary.modal.pass}
+            label={dictionary.modal.pass}
             name="password"
             showPassword={ showPassword }
             onPasswordToggle={ () => setShowPassword(!showPassword) }
@@ -104,8 +150,8 @@ const UserByCompanyIdForm = () => {
           <CustomFormField
             fieldType={ FormFieldType.PASSWORD }
             control={ form.control }
-            placeholder="Confirm Password"
-            label="Confirm Password"
+            placeholder={dictionary.modal.confirm}
+            label={dictionary.modal.confirm}
             name="confirmPassword"
             showPassword={ showConfirmPassword }
             onPasswordToggle={ () => setShowConfirmPassword(!showConfirmPassword) }
@@ -114,26 +160,26 @@ const UserByCompanyIdForm = () => {
           <CustomFormField
             fieldType={ FormFieldType.PHONE_INPUT }
             control={ form.control }
-            placeholder="Telephone"
-            label="Telephone"
+            placeholder={dictionary.modal.phone}
+            label={dictionary.modal.phone}
             name="telephoneUser"
           />
           <CustomFormField
             fieldType={ FormFieldType.INPUT }
             control={ form.control }
-            placeholder="Time Zone"
-            label="Time Zone"
+            placeholder={dictionary.modal.zone}
+            label={dictionary.modal.zone}
             name="timeZone"
           />
           <CustomFormField
             fieldType={ FormFieldType.INPUT }
             control={ form.control }
-            placeholder="Language"
-            label="Language"
+            placeholder={dictionary.modal.lang}
+            label={dictionary.modal.lang}
             name="language"
           />
         </div>
-        <SubmitButton isLoading={ isLoading } onClick={ () => onSubmit(form.getValues()) }>Add</SubmitButton>
+        <SubmitButton isLoading={ isLoading }>{dictionary.modal.add}</SubmitButton>
       </form>
     </Form>
   )

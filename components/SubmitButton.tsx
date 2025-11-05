@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Button } from "./ui/button";
+import {Button} from "./ui/button";
+import {cn} from "@/lib/utils";
 
 interface ButtonProps {
   isLoading: boolean;
@@ -13,7 +14,7 @@ const SubmitButton = ({ isLoading, className, children, onClick }: ButtonProps) 
     <Button
       type='submit'
       disabled={isLoading}
-      className={className ?? "shad-primary-btn w-full py-6 hover:scale-95 transition duration-300"}
+      className={cn("shad-primary-btn w-full py-6 hover:scale-95 transition duration-300", className)}
       onClick={onClick}
     >
       {isLoading ? (

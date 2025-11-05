@@ -1,17 +1,49 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import { ChartOptions } from 'chart.js/auto';
+import { getDictionary } from "@/lib/dictionary";
+import { usePathname } from "next/navigation";
+import { Locale } from "@/i18n.config";
+import Loading from '@/components/loading/LoadingBlack';
 
 const ParticularChart = () => {
     const [showRandomPoint, setShowRandomPoint] = useState(true);
+    const pathname = usePathname();
+      const lang: Locale = (pathname?.split("/")[1] as Locale) || "en";
+      const [loading, setLoading] = useState(true);
+      const [dictionary, setDictionary] = useState<any>(null);
 
     const mainLineData = Array.from({ length: 20 }, () => Math.random() * 50);
     const mainLineData2 = Array.from({ length: 20 }, () => Math.random() * 50);
     const mainLineData3 = Array.from({ length: 20 }, () => Math.random() * 50);
     const randomPointData: number[] = [15];
+
+    useEffect(() => {
+        const loadDictionary = async () => {
+          try {
+            setLoading(true);
+            const dict = await getDictionary(lang);
+            setDictionary(dict.pages.capture);
+          } catch (error) {
+            console.error("Error loading dictionary:", error);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        loadDictionary();
+      }, [lang]);
+    
+      if (loading || !dictionary) {
+        return (
+          <div className="flex items-center justify-center w-full h-full">
+            <Loading />
+          </div>
+        );
+      }
     
     const data = {
         labels: Array.from({ length: 7 }, (_, i) => i.toString()),
@@ -105,8 +137,8 @@ const ParticularChart = () => {
 
     return (
         <div className='rounded-[8px] shadow-custom md:p-6 p-3 w-full'>
-            <h2 className='text-2xl font-bold text-neutral-800'>Particular Matter Emissions</h2>
-            <p className='text-neutral-400 text-sm'>as of 23 Nov 2022, 09:41 PM</p>
+            <h2 className='text-2xl font-bold text-neutral-800'>{dictionary.particular.title}</h2>
+            <p className='text-neutral-400 text-sm'>{dictionary.particular.date}</p>
             <div className="h-[300px]">
                 <Line data={data} options={options} />
             </div>

@@ -8,47 +8,51 @@ import {
 } from '@/components/ui/table'
 import { TrashIcon, UserIcon } from '@heroicons/react/24/outline'
 import React, { useEffect, useState } from 'react'
-import { AxiosError } from 'axios'
 import { IUser } from '@/constants/types'
-import { getUsersByCompanyId } from '@/actions/settings'
 import { ActivityIcon } from 'lucide-react'
 import { Dialog } from '@/components/shared/AlertDialog'
-import { deleteUserById, disableUserById, getUserBySession } from '@/actions/auth'
+import { deleteUserById, disableUserById } from '@/actions/auth'
 import { useToast } from '@/components/ui/use-toast'
-import { getCompanyById } from '@/actions/company'
 import { AdminAccountContext, IAdminAccountContext } from '@/context/setting/admin-account'
-import { Company } from '@/lib/validation'
+import { getDictionary } from "@/lib/dictionary";
+import { usePathname } from "next/navigation";
+import { Locale } from "@/i18n.config";
+import Loading from '@/components/loading/LoadingBlack';
 
 interface TableAdminProps {}
 
 const TableField: React.FC<TableAdminProps> = () => {
-  const [data, setData] = useState<IUser[]>([])
-  const [_, setLoading] = useState(true)
-  const [__, setError] = useState<AxiosError | null>(null)
-  const [company, setCompany] = useState<Company | null>(null)
-  const { setUser, searchTerm, handleOpenUpdateUserModal } = React.useContext(AdminAccountContext) as IAdminAccountContext
+  const { setUser, searchTerm, handleOpenUpdateUserModal, loadData, data, company } = React.useContext(AdminAccountContext) as IAdminAccountContext
   const { toast } = useToast()
-
-  const loadData = async () => {
-    setLoading(true)
-    try {
-      const response = await getUsersByCompanyId()
-      const user = await getUserBySession()
-      const company = await getCompanyById(user.idCompany)
-
-      setData(response)
-      setCompany(company)
-    } catch (error) {
-      console.error({ error })
-      setError(error as AxiosError)
-    } finally {
-      setLoading(false)
-    }
-  }
+  const pathname = usePathname();
+  const lang: Locale = (pathname?.split("/")[1] as Locale) || "en";
+  const [loading, setLoading] = useState(true);
+  const [dictionary, setDictionary] = useState<any>(null);
 
   useEffect(() => {
-    loadData()
-  }, [])
+    const loadDictionary = async () => {
+      try {
+        setLoading(true);
+        const dict = await getDictionary(lang);
+        setDictionary(dict.pages.settings.admin);
+        await loadData()
+      } catch (error) {
+        console.error("Error loading dictionary:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDictionary();
+  }, [lang]);
+
+  if (loading || !dictionary) {
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <Loading />
+      </div>
+    );
+  }
 
   const filteredData = data.filter(user =>
     `${ user.firstName } ${ user.lastName }`.toLowerCase().includes(searchTerm.toLowerCase())
@@ -59,14 +63,17 @@ const TableField: React.FC<TableAdminProps> = () => {
       const response = await deleteUserById(idUserControl)
       if (response.success) {
         toast({
-          title: 'Success',
-          description: 'This user has been inserted successfully',
+          title: dictionary.table.success, 
+          description: dictionary.table.other,
+          className: 'bg-black',
         })
+        await loadData()
       }
     } catch (error) {
       toast({
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.',
+        title: dictionary.table.error,
+        description: dictionary.table.descript,
+        className: 'bg-black',
       })
       console.error({ error })
     }
@@ -77,14 +84,18 @@ const TableField: React.FC<TableAdminProps> = () => {
       const response = await disableUserById(idUserControl)
       if (response.success) {
         toast({
-          title: 'Success',
-          description: 'This user has been disabled successfully',
+          title: dictionary.table.success, 
+          description: dictionary.table.description,
+          className: 'bg-black',
         })
+
+        loadData()
       }
     } catch (error) {
       toast({
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.',
+        title: dictionary.table.error,
+        description: dictionary.table.descript,
+        className: 'bg-black',
       })
       console.error({ error })
     }
@@ -100,11 +111,11 @@ const TableField: React.FC<TableAdminProps> = () => {
       <Table style={ { color: '#9FA2B4' } }>
         <TableHeader>
           <TableRow style={ { color: '#9FA2B4', fontSize: '11px' } }>
-            <TableHead>Organization</TableHead>
-            <TableHead className="hidden md:table-cell">Name</TableHead>
-            <TableHead className="hidden md:table-cell">Email</TableHead>
-            <TableHead className="hidden md:table-cell">Status</TableHead>
-            <TableHead>Options</TableHead>
+            <TableHead>{dictionary.table.organization}</TableHead>
+            <TableHead className="hidden md:table-cell">{dictionary.table.name}</TableHead>
+            <TableHead className="hidden md:table-cell">{dictionary.table.email}</TableHead>
+            <TableHead className="hidden md:table-cell">{dictionary.table.status}</TableHead>
+            <TableHead>{dictionary.table.options}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

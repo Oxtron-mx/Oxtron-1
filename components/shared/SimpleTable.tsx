@@ -25,8 +25,11 @@ type Props<T> = {
 };
 
 const isDate = (value: any): boolean => {
-  return typeof value === 'string' &&
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?(?:Z)?$/.test(value)
+  return (
+    typeof value === 'string' &&
+    (/^\d{1,2}\/\d{1,2}\/\d{4} \d{1,2}:\d{2}:\d{2} (AM|PM)$/.test(value) ||
+      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?$/.test(value))
+  );
 }
 
 export const SimpleTable = <T, >({ columns, data, caption, options }: Props<T>) => {
@@ -57,11 +60,13 @@ export const SimpleTable = <T, >({ columns, data, caption, options }: Props<T>) 
             <TableRow key={ window !== undefined ? window.crypto.randomUUID() : `row-${ rowIndex }` }>
               { columns.map((column, cellIndex) => (
                 <TableCell
-                  className="text-base font-light text-[#9FA2B4] overflow-hidden text-ellipsis whitespace-nowrap"
-                  key={ window !== undefined ? window.crypto.randomUUID() : `cell-${ cellIndex }` }>
-                  {
-                    String(row[column.accessor]).length !== 0 ?
-                      isDate(row[column.accessor]) ? formatDateTime(String(row[column.accessor])).dateDay.split(' ')[1] : String(row[column.accessor]) : '-' }
+                  className="text-base font-light text-[#9FA2B4] break-words whitespace-normal"
+                  key={ window !== undefined ? window.crypto.randomUUID() : `cell-${cellIndex}` }>
+                  { String(row[column.accessor]).length !== 0
+                    ? isDate(row[column.accessor])
+                      ? formatDateTime(String(row[column.accessor])).dateDay.split(' ')[1]
+                      : String(row[column.accessor])
+                    : '-' }
                 </TableCell>
               )) }
               { options ? (

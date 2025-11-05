@@ -25,7 +25,7 @@ export function Dialog({ title, description, cancelText = 'cancel', continueText
       <AlertDialogTrigger asChild>
         { children }
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-white text-black">
         <AlertDialogHeader>
           <AlertDialogTitle>{ title }</AlertDialogTitle>
           { description ?? (
@@ -35,8 +35,8 @@ export function Dialog({ title, description, cancelText = 'cancel', continueText
           ) }
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>{ cancelText }</AlertDialogCancel>
-          <AlertDialogAction onClick={ onAcceptHandler }>{ continueText }</AlertDialogAction>
+          <AlertDialogCancel className="shad-danger-btn">{ cancelText }</AlertDialogCancel>
+          <AlertDialogAction onClick={ onAcceptHandler } className="shad-primary-btn hover:scale-95 transition duration-300">{ continueText }</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -1,71 +1,17 @@
 'use client'
-import { fetchRecentReports, showReport } from '@/actions/communicate'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { ReportHeader } from '@/constants/types'
+import React, { useEffect } from 'react'
 import { ArrowDownTrayIcon, EyeIcon } from '@heroicons/react/24/outline'
-import { AxiosError } from 'axios'
-import React, { useEffect, useState } from 'react'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import Loading from '@/components/loading/LoadingBlack'
-import { CommunicateContext, ICommunicateContext } from '@/context/communicate'
-
-/* const invoices = [
-  {
-    view: EyeIcon,
-    prepared: "Mary J.",
-    facility: "F_001",
-    type: "Heating & Cooling",
-    start: "12/07/2022",
-    end: "12/07/2022"
-  },
-  {
-    view: EyeIcon,
-    prepared: "Rafa C.",
-    facility: "F_001",
-    type: "Transportation",
-    start: "12/07/2022",
-    end: "12/07/2022"
-  },
-  {
-    view: EyeIcon,
-    prepared: "Allen J.",
-    facility: "F_001",
-    type: "Refrigerants",
-    start: "12/07/2022",
-    end: "12/07/2022"
-  },
-]; */
+import { formatDateTime } from '@/lib/utils'
+import { useCommunicateStore } from '@/store/communicate'
 
 const TableField = () => {
-  const [data, setData] = useState<ReportHeader[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<AxiosError | null>(null)
-  const { setReport, handleShowReportModal } = React.useContext(CommunicateContext) as ICommunicateContext
+  const { fetchReports, reports, setDownloadReport, CSV, XLSX, loading, error, setReport, handleShowReportModal } = useCommunicateStore()
 
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        const response = await fetchRecentReports()
-        setData(response)
-      } catch (error) {
-        console.error({ error })
-        setError(error as AxiosError)
-    } finally {
-        setLoading(false)
-      }
-    }
-
-    loadData()
+    fetchReports()
   }, [])
-
-  const handleShowReport = async (idUserControl: number, startDate: string, endDate: string, type: number) => {
-    try {
-      const response: ReportHeader = await showReport(idUserControl, startDate, endDate, type)
-      setReport(response)
-      handleShowReportModal()
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
   return !loading ? (
     !error ? (
@@ -79,23 +25,37 @@ const TableField = () => {
             <TableHead className="hidden md:table-cell">Start Date</TableHead>
             <TableHead className="hidden md:table-cell">End Date</TableHead>
             <TableHead className="w-[50px]">PDF</TableHead>
+            <TableHead className="w-[50px]">EXL</TableHead>
+            <TableHead className="w-[50px]">CSV</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          { data.map(({ facilityId, idUserControl, idType, typeDescription, startDate, endDate, preparedBy }, index) => (
+          { reports.map((report, index) => (
             <TableRow key={ index }>
               <TableCell className="text-center hidden md:table-cell">
-                <EyeIcon className="w-4 h-4 cursor-pointer" onClick={ () => handleShowReport(idUserControl, startDate, endDate, idType) }/>
+                <EyeIcon className="w-4 h-4 cursor-pointer" onClick={ () => {
+                  handleShowReportModal()
+                  setReport(report)
+                } }/>
               </TableCell>
               <TableCell className="font-medium">
-                { preparedBy ?? idUserControl }
+                { report.firstName }
               </TableCell>
-              <TableCell className="hidden md:table-cell">{ facilityId }</TableCell>
-              <TableCell className="hidden md:table-cell">{ typeDescription }</TableCell>
-              <TableCell className="hidden md:table-cell">{ startDate }</TableCell>
-              <TableCell className="hidden md:table-cell">{ endDate }</TableCell>
+              <TableCell className="hidden md:table-cell">{ report.idFacility }</TableCell>
+              <TableCell className="hidden md:table-cell">{ report.type }</TableCell>
+              <TableCell className="hidden md:table-cell">{ formatDateTime(report.startDate).dateDay }</TableCell>
+              <TableCell className="hidden md:table-cell">{ formatDateTime(report.endDate).dateDay }</TableCell>
               <TableCell>
-                <ArrowDownTrayIcon className="w-4 h-4"/>
+                <ArrowDownTrayIcon className="w-4 h-4 cursor-pointer" onClick={ () => {
+                  setReport(report)
+                  setDownloadReport(true)
+                } }/>
+              </TableCell>
+              <TableCell>
+                <ArrowDownTrayIcon className="w-4 h-4 cursor-pointer" onClick={ () => XLSX(report.idControlCommunicate || 0, report.idUserControl || 0) }/>
+              </TableCell>
+              <TableCell>
+                <ArrowDownTrayIcon className="w-4 h-4 cursor-pointer" onClick={ () => CSV(report.idControlCommunicate || 0, report.idUserControl || 0) }/>
               </TableCell>
             </TableRow>
           )) }
@@ -107,7 +67,7 @@ const TableField = () => {
       </div>
     )
   ) : (
-    <Loading />
+    <Loading/>
   )
 }
 

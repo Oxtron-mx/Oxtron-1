@@ -1,1 +1,1 @@
-export const roles = [{value: 'admin', label: 'Admin' }, {value: 'user', label: 'User' }]
+export const roles = [{value: '1', label: 'Admin' }, {value: '2', label: 'User' }]

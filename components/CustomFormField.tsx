@@ -1,6 +1,8 @@
 import { E164Number } from 'libphonenumber-js/core'
 import Image from 'next/image'
 import ReactDatePicker from 'react-datepicker'
+import '@/components/react-datepicker.css'
+import "react-datepicker/dist/react-datepicker.css";
 // import { format } from 'date-fns'
 import { Control } from 'react-hook-form'
 import PhoneInput from 'react-phone-number-input'
@@ -18,8 +20,7 @@ import { /* CalendarIcon, */Eye, EyeOff } from 'lucide-react' // Importa los íc
 import 'react-phone-number-input/style.css'
 import { cn } from '@/lib/utils'
 import { Label } from '@/components/ui/label'
-import '@/components/react-datepicker.css'
-import "react-datepicker/dist/react-datepicker.css";
+import imageCompression from 'browser-image-compression'
 
 export enum FormFieldType {
   INPUT = 'input',
@@ -31,6 +32,7 @@ export enum FormFieldType {
   SELECT = 'select',
   SKELETON = 'skeleton',
   RADIO = 'radio',
+  FILE_INPUT = 'fileInput',
 }
 
 interface CustomProps {
@@ -52,13 +54,16 @@ interface CustomProps {
 }
 
 const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
-  switch (props.fieldType) {
+  const { fieldType, ...restProps } = props;
+
+  switch (fieldType) {
     case FormFieldType.INPUT:
       return (
         <FormControl className={`flex-1 title-century-gothic-regular bg-[#FCFDFE] ${props.className}`}>
           <Input
             placeholder={ props.placeholder }
             { ...field }
+            {...restProps}
             className="bg-[#FCFDFE] border-[#DFE0EB] border-[1px] text-[#4B506D]"
           />
         </FormControl>
@@ -177,24 +182,27 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
               dateFormat={props.dateFormat ?? 'MM/dd/yyyy'}
               className="w-full px-4 py-2"
               wrapperClassName="date-picker"
+              autoFocus={false}
+              preventOpenOnFocus={true}
             />
           </FormControl>
         </div>
       );
-          
-      
+
     case FormFieldType.SELECT:
       return (
         <FormControl className="flex-1 title-century-gothic-regular bg-[#FCFDFE]">
-          <Select onValueChange={ field.onChange } defaultValue={ field.value }>
+          <Select onValueChange={ field.onChange } defaultValue={ field.value?.toString() } disabled={props?.disabled}>
             <FormControl>
               <SelectTrigger className="bg-[#FCFDFE] border-[#DFE0EB] text-[#4B506D]">
                 <SelectValue placeholder={ props.placeholder }/>
               </SelectTrigger>
             </FormControl>
             <SelectContent className="bg-[#FCFDFE] border-[#DFE0EB] text-[#4B506D]">
-              { props.options?.map(option => (
-                <SelectItem key={ option.value } value={ option.value } className="text-[#4B506D]">
+              {props.options?.map((option, index) => (
+                <SelectItem
+                  key={`${option.value}-${index}`}
+                  value={option.value}>
                   { option.label }
                 </SelectItem>
               )) }
@@ -228,6 +236,45 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
               }) }
             </RadioGroup>
           </div>
+        </FormControl>
+      )
+    case FormFieldType.FILE_INPUT:
+      return (
+        <FormControl>
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={async (event) => {
+              const file = event.target.files?.[0]
+              if (!file) return
+
+              const isValid = file.type.startsWith("image/")
+              if (!isValid) {
+                alert("El archivo debe ser una imagen.")
+                return
+              }
+
+              try {
+                const compressedFile = await imageCompression(file, {
+                  maxSizeMB: 1,
+                  maxWidthOrHeight: 1024,
+                  useWebWorker: true
+                })
+
+                const reader = new FileReader()
+                reader.onloadend = () => {
+                  const base64Image = reader.result as string
+                  const cleanBase64 = base64Image.replace(/^data:image\/\w+;base64,/, "")
+
+                  field.onChange(cleanBase64)
+                }
+                reader.readAsDataURL(compressedFile)
+              } catch (error) {
+                console.error("Error al comprimir la imagen:", error)
+              }
+            }}
+            className="bg-[#FCFDFE] border-[#DFE0EB] border-[1px] text-[#4B506D]"
+          />
         </FormControl>
       )
     default:

@@ -1,9 +1,9 @@
 import { createContext, useState } from 'react'
-import { ReportHeader } from '@/constants/types'
+import {Communicate} from "@/lib/validation";
 
 export interface ICommunicateContext {
-  report?: ReportHeader
-  setReport: (report: ReportHeader) => void
+  report?: Communicate
+  setReport: (report: Communicate) => void
   showReportModal: boolean
   handleHideReportModal: () => void
   handleShowReportModal: () => void
@@ -14,7 +14,7 @@ export interface ICommunicateContext {
 
 export const CommunicateContext = createContext<ICommunicateContext | null>(null);
 export const CommunicateProvider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-  const [report, setReport] = useState<ReportHeader | undefined>(undefined)
+  const [report, setReport] = useState<Communicate | undefined>(undefined)
   const [showReportModal, setShowReportModal] = useState<boolean>(false)
   const [showCreateReportModal, setShowCreateReportModal] = useState<boolean>(false)
   const handleHideReportModal = () => setShowReportModal(false)

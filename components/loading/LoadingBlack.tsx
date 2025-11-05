@@ -4,7 +4,7 @@ import animationData from '../../public/assets/lotties/loading.json';
 
 const Loading = () => {
   return (
-    <div className="lg:ml-64 flex flex-col items-center justify-center h-full">
+    <div className="lg:ml-[205px] flex flex-col items-center justify-center h-full">
       <Lottie
         loop
         animationData={animationData}

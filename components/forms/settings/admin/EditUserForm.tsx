@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { AdminAccountContext, IAdminAccountContext } from '@/context/setting/admin-account'
 import { useToast } from '@/components/ui/use-toast'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Company, UpdateUser, UpdateUserValidation } from '@/lib/validation'
-import { getUserBySession, updateUser } from '@/actions/auth'
-import { getCompanyById } from '@/actions/company'
+import {getCboRoles, getUserBySession, updateUser} from '@/actions/auth'
 import { Form } from '@/components/ui/form'
 import CustomFormField, { FormFieldType } from '@/components/CustomFormField'
-import { roles } from '@/constants/auth'
 import SubmitButton from '@/components/SubmitButton'
+import { getCompanyById } from '@/actions/company'
 
-export const EditUserForm = () => {
+const EditUserForm = () => {
   const [isLoading, setIsLoading] = React.useState(false)
   const [_, setCompany] = useState<Company>()
-  const { user } = React.useContext(AdminAccountContext) as IAdminAccountContext
+  const { user, handleCloseUpdateUserModal } = React.useContext(AdminAccountContext) as IAdminAccountContext
   const { toast } = useToast()
-
-  console.log('admin->EditUser', { user })
+  const { loadData: reloadData } = useContext(AdminAccountContext) as IAdminAccountContext
+  const [roles, setRoles] = useState<Option[]>([])
 
   const form = useForm<UpdateUser>({
     resolver: zodResolver(UpdateUserValidation),
@@ -35,14 +34,18 @@ export const EditUserForm = () => {
       role: user?.role,
       telephoneUser: user?.telephoneUser,
       timeZone: user?.timeZone,
-
     }
   })
 
   const loadData = async () => {
     const user = await getUserBySession()
     const company = await getCompanyById(user.idCompany)
+    const roles = await getCboRoles();
 
+    setRoles(roles.map((role) => ({
+      value: role.idCatRole.toString(),
+      label: role.description,
+    })))
     setCompany(company)
   }
 
@@ -59,13 +62,17 @@ export const EditUserForm = () => {
         toast({
           title: 'Success',
           description: 'This user has been updated successfully',
+          className: 'bg-black',
         })
         form.reset()
+        await reloadData()
+        handleCloseUpdateUserModal()
       }
     } catch (error) {
       toast({
         title: 'Uh oh! Something went wrong.',
         description: 'There was a problem with your request.',
+        className: 'bg-black',
       })
       console.error(error)
     } finally {
@@ -96,7 +103,7 @@ export const EditUserForm = () => {
             control={ form.control }
             placeholder="Role"
             label="Role"
-            name="role"
+            name="idUSerType"
             options={ roles }
           />
           <CustomFormField
@@ -119,13 +126,6 @@ export const EditUserForm = () => {
             placeholder="Confirm Password"
             label="Confirm Password"
             name="confirmPassword"
-          />
-          <CustomFormField
-            fieldType={ FormFieldType.INPUT }
-            control={ form.control }
-            placeholder="Type of License"
-            label="Type of License"
-            name="typeLicense"
           />
           <CustomFormField
             fieldType={ FormFieldType.PHONE_INPUT }
@@ -156,3 +156,5 @@ export const EditUserForm = () => {
     </Form>
   )
 }
+
+export default EditUserForm

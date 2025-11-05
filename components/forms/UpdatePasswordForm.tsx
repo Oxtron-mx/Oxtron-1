@@ -15,6 +15,42 @@ import Lottie from 'lottie-react'
 import animationData from "@/public/assets/lotties/success.json"
 import { Button } from '../ui/button'
 
+interface UpdatePasswordProps{
+    dictionary: {
+        successMessage: string;
+        been: string;
+        goBackToLogin: string;
+        form: {
+            title: string;
+            instruction: string;
+            errorMessage: string;
+            was: string;
+            tryAgain: string;
+            fields: {
+                email: {
+                    label: string;
+                    placeholder: string;
+                },
+                currentPassword: {
+                    label: string;
+                    placeholder: string;
+                },
+                newPassword: {
+                    label: string;
+                    placeholder: string;
+                },
+                confirmNewPassword: {
+                    label: string;
+                    placeholder: string;
+                }
+            },
+            submitButton: string;
+            returnToLogin: string;
+            log: string;
+        }
+    }
+}
+
 export enum FormFieldType {
     INPUT = 'input',
     PASSWORD = "password",
@@ -28,7 +64,7 @@ export enum FormFieldType {
 
 type UpdatePasswordFormValues = z.infer<typeof UpdatePasswordValidation>;
 
-const UpdatePassword = () => {
+const UpdatePassword = ({ dictionary }: UpdatePasswordProps) => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
@@ -69,27 +105,27 @@ const UpdatePassword = () => {
                         className="flex justify-center items-center h-32"
                         loop={true}
                     />
-                    <p className="text-dark-600 text-center">Your password <br /> has been successfully updated.</p>
+                    <p className="text-dark-600 text-center">{dictionary.successMessage} <br />{dictionary.been}</p>
                     <SubmitButton isLoading={isLoading} onClick={() => router.push('/')}>
-                        Go back to Login
+                        {dictionary.goBackToLogin}
                     </SubmitButton>
                 </div>
                 :
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
                         <section className="mb-12 space-y-4 text-center">
-                            <h1 className="font-bold text-[24px] text-black title-century-gothic-bold">Update Password</h1>
-                            <p className="text-[#9FA2B4] title-century-gothic-regular text-[14px]">Please enter your email, current password and new password below</p>
+                            <h1 className="font-bold text-[24px] text-black title-century-gothic-bold">{dictionary.form.title}</h1>
+                            <p className="text-[#9FA2B4] title-century-gothic-regular text-[14px]">{dictionary.form.instruction}</p>
                         </section>
                         { error ?
                             <div className="space-y-6 flex-1">
-                                <p className="text-[#9FA2B4] title-century-gothic-regular text-[14px] text-center">Please check your data,<br />there was an error in your request.</p>
+                                <p className="text-[#9FA2B4] title-century-gothic-regular text-[14px] text-center">{dictionary.form.errorMessage}<br />{dictionary.form.was}</p>
                                 <Button
                                     type='button'
                                     className={"shad-primary-btn w-full py-6 hover:scale-95 transition duration-300"}
                                     onClick={() => setError(false)}
                                 >
-                                    Try again
+                                    {dictionary.form.tryAgain}
                                 </Button>
                             </div>
                             :
@@ -98,15 +134,15 @@ const UpdatePassword = () => {
                                     fieldType={FormFieldType.INPUT}
                                     control={form.control}
                                     name="email"
-                                    label="Email"
-                                    placeholder="Email address"
+                                    label={dictionary.form.fields.email.label}
+                                    placeholder={dictionary.form.fields.email.placeholder}
                                 />
                                 <CustomFormField
                                     fieldType={FormFieldType.PASSWORD}
                                     control={form.control}
                                     name="passwordOld"
-                                    label="Current Password"
-                                    placeholder="Current Password"
+                                    label={dictionary.form.fields.currentPassword.label}
+                                    placeholder={dictionary.form.fields.currentPassword.placeholder}
                                     showPassword={showPassword}
                                     showPasswordToggle={true}
                                     onPasswordToggle={() => setShowPassword(!showPassword)}
@@ -115,8 +151,8 @@ const UpdatePassword = () => {
                                     fieldType={FormFieldType.PASSWORD}
                                     control={form.control}
                                     name="passwordNew"
-                                    label="New Password"
-                                    placeholder="New Password"
+                                    label={dictionary.form.fields.newPassword.label}
+                                    placeholder={dictionary.form.fields.newPassword.placeholder}
                                     showPassword={showNewPassword}
                                     showPasswordToggle={true}
                                     onPasswordToggle={() => setShowNewPassword(!showPassword)}
@@ -125,17 +161,17 @@ const UpdatePassword = () => {
                                     fieldType={FormFieldType.PASSWORD}
                                     control={form.control}
                                     name="confirmPassword"
-                                    label="Confirm New Password"
-                                    placeholder="Confirm New Password"
+                                    label={dictionary.form.fields.confirmNewPassword.label}
+                                    placeholder={dictionary.form.fields.confirmNewPassword.placeholder}
                                     showPassword={showValidatePassword}
                                     showPasswordToggle={true}
                                     onPasswordToggle={() => setShowValidatePassword(!showPassword)}
                                 />
                                 <SubmitButton isLoading={isLoading}>
-                                    Update Password
+                                    {dictionary.form.submitButton}
                                 </SubmitButton>
                                 <Link href="/" className="text-dark-600 text-sm w-full font-extralight mb-20">
-                                    <p className="mt-4">Return to <b>Log In</b></p>
+                                    <p className="mt-4">{dictionary.form.returnToLogin} <b>{dictionary.form.log}</b></p>
                                 </Link>
                             </div>
                         }

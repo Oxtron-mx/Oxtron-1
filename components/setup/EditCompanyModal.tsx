@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Form } from '@/components/ui/form';
-import { Modal } from '@/components/shared/Modal';
+import Modal from '@/components/shared/Modal';
 import SubmitButton from '@/components/SubmitButton';
 import CustomFormField, { FormFieldType } from '@/components/CustomFormField';
 

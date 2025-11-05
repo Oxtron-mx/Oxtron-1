@@ -1,7 +1,8 @@
 'use server'
-import { auth } from '@/auth'
+import {auth} from '@/auth'
 import axiosInstance from '@/lib/axios-instance'
-import { Company } from '@/lib/validation'
+import {Company} from '@/lib/validation'
+import {ComboTypeOfLicense} from "@/constants/types";
 
 /* export async function getCompanies(): Promise<Company[]> {
   try {
@@ -42,5 +43,14 @@ export async function updateCompany(company: Company) {
   } catch (error) {
     console.log(error)
     throw error
+  }
+}
+
+export async function getTypeOfLicenses(): Promise<ComboTypeOfLicense[]> {
+  try {
+    const response = await axiosInstance.get('/TypesLicenses/Mostrar_Types_Licenses');
+    return response.data
+  } catch (e) {
+    return []
   }
 }

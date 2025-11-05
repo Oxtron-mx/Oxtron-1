@@ -6,7 +6,7 @@ import { register } from '@/actions/auth'
 import { Form } from '@/components/ui/form'
 import { useToast } from '@/components/ui/use-toast'
 import CustomFormField, { FormFieldType } from '@/components/CustomFormField'
-import { Modal } from '@/components/shared/Modal'
+import Modal from '@/components/shared/Modal'
 import SubmitButton from '@/components/SubmitButton'
 import { roles } from '@/constants/auth'
 import { UserRegisterValidation } from '@/lib/validation'
@@ -33,7 +33,6 @@ const FormModal: React.FC<{ open: boolean; onClose: () => void; }> = ({ open, on
       state: '',
       country: '',
       postalCode: '',
-      typeLicense: 0,
       telephoneUser: '',
       timeZone: '',
       language: '',
@@ -48,12 +47,14 @@ const FormModal: React.FC<{ open: boolean; onClose: () => void; }> = ({ open, on
       toast({
         title: 'Success',
         description: 'This user has been inserted successfully',
+      className: 'bg-black',
       })
       form.reset()
     } catch (error) {
       toast({
         title: 'Uh oh! Something went wrong.',
         description: 'There was a problem with your request.',
+      className: 'bg-black',
       })
       console.error(error)
     } finally {

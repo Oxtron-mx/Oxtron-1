@@ -1,0 +1,1567 @@
+{
+    "pages": {
+        "login": {
+            "title": "Iniciar Sesión",
+            "subtitle": "Ingresa tu correo electrónico y contraseña a continuación",
+            "labels": {
+                "email": "Correo Electrónico",
+                "password": "Contraseña",
+                "forgot": "¿Olvidaste tu contraseña?",
+                "account": "¿No tienes una cuenta?"
+            },
+            "placeholders": {
+                "email": "Dirección de correo electrónico",
+                "password": "Contraseña"
+            },
+            "buttons": {
+                "login": "Iniciar Sesión",
+                "signup": "Regístrate"
+            },
+            "toast": {
+                "title": "¡Oh no! Algo salió mal.",
+                "description": "Hubo un problema con tu solicitud."
+            }
+        },
+        "signup": {
+            "title": "Regístrate",
+            "subtitle": "Ingresa la información de tu administrador a continuación",
+            "labels": {
+                "firstname": "Nombre",
+                "lastname": "Apellido",
+                "role": "Rol",
+                "email": "Correo Electrónico",
+                "organisation": "Nombre de la Organización",
+                "city": "Ciudad",
+                "state": "Estado",
+                "country": "País",
+                "postal": "Código Postal",
+                "license": "Tipo de Licencia",
+                "account": "¿Ya tienes una cuenta?",
+                "pass": "Contraseña",
+                "passc": "Confirmar Contraseña",
+                "not": "Las contraseñas no coinciden"
+            },
+            "placeholders": {
+                "firstname": "Ingresa tu nombre",
+                "lastname": "Ingresa tu apellido",
+                "role": "Ingresa tu rol",
+                "email": "Ingresa tu dirección de correo",
+                "organisation": "Ingresa el nombre de tu organización",
+                "city": "Ingresa tu ciudad",
+                "state": "Ingresa tu estado",
+                "country": "Ingresa tu país",
+                "postal": "Ingresa tu código postal",
+                "license": "Selecciona tu tipo de licencia",
+                "pass": "Password",
+                "passc": "Confirm Password"
+            },
+            "buttons": {
+                "next": "Siguiente",
+                "login": "Iniciar Sesión"
+            },
+            "options": {
+                "basic": "Inventario Básico de Emisiones",
+                "professional": "Inventario Profesional de Emisiones",
+                "emissions": "Inventario Avanzado de Emisiones",
+                "footprint": "Huella de Carbono Básica",
+                "carbon": "Huella de Carbono Profesional",
+                "advanced": "Huella de Carbono Avanzada"
+            },
+            "toast": {
+                "succ": "Éxito",
+                "been": "Te has registrado exitosamente",
+                "wrong": "¡Oh no! Algo salió mal.",
+                "was": "Hubo un problema con tu solicitud."
+            }
+        },
+        "forgot": {
+            "title": "Olvidé mi contraseña",
+            "subtitle": "Ingresa tu dirección de correo electrónico para restablecer tu contraseña",
+            "label": "Correo electrónico",
+            "placeholder": "Ingresa tu dirección de correo electrónico",
+            "button": "Enviar enlace de restablecimiento",
+            "label2": "¿Recuperaste tu contraseña?",
+            "button2": "Iniciar sesión",
+            "label3": "Un correo electrónico con más instrucciones",
+            "label4": "ha sido enviado con éxito.",
+            "button3": "Regresar a Iniciar sesión",
+            "error1": "Por favor, verifica tus datos,",
+            "error2": "hubo un error en tu solicitud.",
+            "error3": "Intenta de nuevo"
+        },
+        "success": {
+            "title": "¡Gracias por tu registro!",
+            "labels": {
+                "shortly": "En breve, nuestro equipo enviará un correo con tu nueva contraseña para acceder a nuestro panel",
+                "already": "¿Ya tienes una cuenta?"
+            },
+            "button": {
+                "login": "Iniciar Sesión"
+            }
+        },
+        "no-access": {
+        "label1": "Su usuario está en proceso de revisión y validación; el administrador se pondrá en contacto con usted lo antes posible.",
+        "label2": "A punto de comenzar su viaje hacia",
+        "label3": "Cero Neto"
+        },
+        "update": {
+            "successMessage": "Tu contraseña",
+            "been": "ha sido actualizada exitosamente.",
+            "goBackToLogin": "Regresar al inicio de sesión",
+            "form": {
+                "title": "Actualizar contraseña",
+                "instruction": "Por favor, ingresa tu correo electrónico, contraseña actual y nueva contraseña a continuación",
+                "errorMessage": "Por favor,",
+                "was": "hubo un error en tu solicitud.",
+                "tryAgain": "Inténtalo de nuevo",
+                "fields": {
+                    "email": {
+                        "label": "Correo electrónico",
+                        "placeholder": "Dirección de correo electrónico"
+                    },
+                    "currentPassword": {
+                        "label": "Contraseña actual",
+                        "placeholder": "Contraseña actual"
+                    },
+                    "newPassword": {
+                        "label": "Nueva contraseña",
+                        "placeholder": "Nueva contraseña"
+                    },
+                    "confirmNewPassword": {
+                        "label": "Confirmar nueva contraseña",
+                        "placeholder": "Confirmar nueva contraseña"
+                    }
+                },
+                "submitButton": "Actualizar contraseña",
+                "returnToLogin": "Regresar al",
+                "log": "inicio de sesión"
+            }
+        },
+        "nav": {
+            "dashboard": "tablero",
+            "measure": "medir",
+            "comm": "comunicar",
+            "capture": "capturar",
+            "settings": "configuración",
+            "out": "Cerrar sesión"
+        },
+        "dashboard": {
+            "title": "Tablero",
+            "description": "Descubre el impacto ambiental de las actividades diarias",
+            "totalEmissions": "Emisiones Totales Producidas",
+            "impactEquivalence": "Equivalencia de Impacto",
+            "sectorComparison": "Comparación Sectorial",
+            "progress": "Progreso",
+            "bottles": "Botellas de Agua",
+            "equalizer": {
+                "title": "Emisiones Históricas",
+                "label1": "Producido",
+                "label2": "Capturado"
+            },
+            "error": {
+                "title": "Bienvenido a tu Panel de Captura de Carbono",
+                "subtitle": "Comienza a registrar tus mediciones para ver un resumen aquí",
+                "button": "Ir a Mediciones"
+            },
+            "bar": {
+                "greenhouseGasEmissions": "Emisiones de Gases de Efecto Invernadero",
+                "co2": "CO2",
+                "ch4": "CH4",
+                "n2o": "N2O",
+                "biofuelCo2": "CO2 Biocombustibles",
+                "gasEmissionsLabel": "Emisiones de Gases"
+            },
+            "circle": {
+                "title": "Distribución de Emisiones",
+                "scope": "Ámbito",
+                "circle1": {
+                    "stationary": "Estacionario",
+                    "mobile": "Móvil",
+                    "refrigerants": "Refrigerantes",
+                    "biogenic": "Biogénico"
+                },
+                "circle2": {
+                    "location": "Base de Ubicación...",
+                    "market": "Base de Mercado E...",
+                    "heat": "Calor y stre..."
+                },
+                "circle3": {
+                    "transport": "Transporte y...",
+                    "bussiness": "Transporte Empresarial...",
+                    "employee": "Empleados C...",
+                    "biogenic": "Biogénico"
+                }
+            },
+                "table": {
+                    "title": "Impacto Ambiental por Instalación",
+                    "facility": "ID de Instalación",
+                    "scope1": "Alcance 1",
+                    "scope2": "Alcance 2",
+                    "scope3": "Alcance 3",
+                    "total": "Total CO2e",
+                    "progress": "Progreso"
+                },
+                "capture": {
+                "title": "Captura de Emisiones",
+                "label1": "Esta es la mejora que puedes lograr.",
+                "label2": "Captura las emisiones inevitables para alcanzar el cero neto.",
+                "contact": "Contáctanos"
+                }
+            },
+        "measure": {
+            "title": "Medir",
+            "subtitle": "Mide las emisiones de tu empresa e identifica los puntos críticos",
+            "create": "Crear una factura manualmente",
+            "search": "Buscar",
+            "add": "Agregar",
+            "bar": [
+                "Todo",
+                "Alcance 1",
+                "Alcance 2",
+                "Alcance 3"
+            ],
+            "cards": [
+                {
+                    "id": 1,
+                    "title": "Instalaciones",
+                    "description": "Información sobre este tipo de emisiones",
+                    "icon": {
+                        "src": "/assets/icons/black/Facility.png",
+                        "position": "body"
+                    },
+                    "link": "/facilities",
+                    "lastUpdated": "2022-11-23",
+                    "footerCard": {
+                        "scope": ["Alcance 1", "Alcance 2", "Alcance 3"]
+                    }
+                },
+                {
+                    "id": 2,
+                    "title": "Vehículos",
+                    "description": "Información sobre este tipo de emisiones",
+                    "icon": {
+                        "src": "/assets/icons/black/Vehicles.png",
+                        "position": "body"
+                    },
+                    "link": "/vehicles",
+                    "lastUpdated": "2022-11-23",
+                    "footerCard": {
+                        "scope": ["Alcance 1"]
+                    }
+                },
+                {
+                    "id": 3,
+                    "title": "Viajes",
+                    "description": "Información sobre este tipo de emisiones",
+                    "icon": {
+                        "src": "/assets/icons/black/Travel.png",
+                        "position": "body"
+                    },
+                    "link": "/travels",
+                    "lastUpdated": "2022-11-23",
+                    "footerCard": {
+                        "scope": ["Alcance 3"]
+                    }
+                },
+                {
+                    "id": 4,
+                    "title": "Logística",
+                    "description": "Información sobre este tipo de emisiones",
+                    "icon": {
+                        "src": "/assets/icons/black/Logistics.png",
+                        "position": "body"
+                    },
+                    "link": "/logistics",
+                    "lastUpdated": "2022-11-23",
+                    "footerCard": {
+                        "scope": ["Alcance 3"]
+                    }
+                },
+                {
+                    "id": 5,
+                    "title": "Manufactura",
+                    "description": "Información sobre este tipo de emisiones",
+                    "icon": {
+                        "src": "/assets/icons/black/Manufacturing.png",
+                        "position": "body"
+                    },
+                    "link": "/manufacturing",
+                    "lastUpdated": "2022-11-23",
+                    "footerCard": {
+                        "scope": ["Alcance 1"]
+                    }
+                },
+                {
+                    "id": 6,
+                    "title": "Desplazamientos",
+                    "description": "Información sobre este tipo de emisiones",
+                    "icon": {
+                        "src": "/assets/icons/black/Commuting.png",
+                        "position": "body"
+                    },
+                    "link": "/commuting",
+                    "lastUpdated": "2022-11-23",
+                    "footerCard": {
+                        "scope": ["Alcance 3"]
+                    }
+                }
+            ],
+            "and": "y",
+            "nodata": "Sin información disponible",
+            "all": {
+                "facilities": "Instalaciones",
+                "vehicles": "Vehículos",
+                "travels": "Viajes",
+                "logistics": "Logística",
+                "manufacturing": "Manufactura",
+                "commuting": "Desplazamientos",
+                "date": "Última Actualización: 22 de nov de 2022",
+                "label1": "Información sobre este tipo de emisiones",
+                "label2": "Alcance 1, 2 y 3",
+                "label3": "Alcance 1",
+                "label4": "Alcance 3"
+            },
+            "table": {
+                "commuting": {
+                    "trans": "Transporte",
+                    "acti": "Actividad",
+                    "dis": "Distancia",
+                    "unit": "Unidad",
+                    "ori": "Origen",
+                    "dest": "Destino",
+                    "user": "Usuario",
+                    "status": "Estado"
+                },
+                "facilities": {
+                    "type": "Tipo",
+                    "sour": "Fuente",
+                    "amo": "Cantidad",
+                    "uni": "Unidad",
+                    "start": "Fecha de inicio",
+                    "end": "Fecha de finalización",
+                    "up": "Subido por",
+                    "status": "Estado"
+                },
+                "logistics": {
+                    "trans": "Transporte",
+                    "fuel": "Combustible",
+                    "ori": "Origen",
+                    "des": "Destino",
+                    "dis": "Distancia (km)",
+                    "fue": "Combustible (l)",
+                    "Up": "Subido por",
+                    "status": "Estado"
+                },
+                "manufacturing": {
+                    "equi": "Equipo",
+                    "cd": "Código",
+                    "amo": "Cantidad",
+                    "unit": "Unidad",
+                    "start": "Fecha de inicio",
+                    "end": "Fecha de finalización",
+                    "up": "Subido por",
+                    "status": "Estado"
+                },
+                "travels": {
+                    "vehi": "Vehículo",
+                    "sou": "Fuente",
+                    "ori": "Origen",
+                    "desti": "Destino",
+                    "km": "km",
+                    "date": "Fecha",
+                    "up": "Subido por",
+                    "status": "Estado"
+                },
+                "vehicles": {
+                    "type": "Tipo",
+                    "sou": "Fuente",
+                    "amo": "Cantidad",
+                    "unit": "Unidad",
+                    "start": "Fecha de inicio",
+                    "end": "Fecha de fin",
+                    "up": "Cargado por",
+                    "status": "Estado"
+                }
+            },
+            "modal": {
+                "create": "Agregar Instalación",
+                "title": "Actualizar Instalación",
+                "write": "Escribir ID de instalación",
+                "id": "ID de la Instalación",
+                "status": "Estado de la Propiedad",
+                "city": "Ciudad",
+                "country": "País",
+                "desc": "Descripción (Opcional)",
+                "button": "Actualizar",
+                "add": "Agregar",
+                "toast": {
+                    "create": {
+                        "title": "Éxito",
+                        "description": "Este item se ha insertado con éxito"
+                    },
+                    "update": {
+                        "title": "Éxito",
+                        "description": "Este item se ha actualizado con éxito"
+                    },
+                    "delete": {
+                        "title": "Éxito",
+                        "description": "Este item se ha eliminado con éxito"
+                    },
+                    "error": {
+                        "title": "Error",
+                        "description": "Algo salió mal al procesar el item."
+                    }
+                }
+            },
+            "modalv": {
+                "create": "Crear Vehículo",
+                "title": "Actualizar Vehículo",
+                "proper": "Estado de la Propiedad",
+                "select": "Seleccionar Estado",
+                "opt": "NOMBRE (OPCIONAL)",
+                "name": "Nombre",
+                "brand": "MARCA",
+                "selectb": "Seleccionar Marca",
+                "model": "MODELO",
+                "selectm": "Seleccionar Modelo",
+                "type": "TIPO",
+                "selectt": "Seleccionar Tipo",
+                "license": "PLACA (Opcional)",
+                "write": "Escribir Placa",
+                "add": "Agregar",
+                "up": "Actualizar",
+                "messages": {
+                    "success": "Éxito",
+                    "descrip1": "Este vehículo ha sido insertado exitosamente",
+                    "descrip2": "Este vehículo ha sido actualizado exitosamente",
+                    "descrip3": "Este vehículo ha sido eliminado exitosamente",
+                    "this": "Este vehículo ha sido",
+                    "inser": "insertado",
+                    "up": "Actualizar",
+                    "succ": "exitosamente",
+                    "var": "destructivo",
+                    "title": "¡Ups! Algo salió mal.",
+                    "descrip4": "Hubo un problema con tu solicitud."
+                }
+            },
+            "modalt": {
+                "create": "Crear Viaje",
+                "title": "Actualizar Viaje",
+                "id": "ID DEL VIAJE",
+                "write": "Escribe el ID del Viaje",
+                "descri": "DESCRIPCIÓN",
+                "writed": "Escribe la Descripción",
+                "add": "Agregar",
+                "up": "Actualizar",
+                "messages": {
+                    "succ": "Éxito",
+                    "this": "Este viaje se ha insertado correctamente",
+                    "this1": "Este viaje se ha actualizado correctamente",
+                    "this2": "Este viaje se ha eliminado correctamente",
+                    "title": "¡Oh no! Algo salió mal.",
+                    "descrip": "Hubo un problema con tu solicitud."
+                }
+            },
+            "modall": {
+                "create": "Crear Logística",
+                "title": "Actualizar Logística",
+                "origin": "ORIGEN",
+                "label": "Origen",
+                "desti": "DESTINO",
+                "label1": "Destino",
+                "zip": "Código Postal de Origen",
+                "label2": "CÓDIGO POSTAL DE ORIGEN",
+                "code": "Código Postal de Destino",
+                "label3": "CÓDIGO POSTAL DE DESTINO",
+                "load": "Carga",
+                "label4": "CARGA (Opcional)",
+                "client": "Cliente",
+                "label5": "CLIENTE (Opcional)",
+                "status": "Seleccionar Estado",
+                "label6": "ESTADO DE LA PROPIEDAD",
+                "name": "Nombre",
+                "label7": "NOMBRE (Opcional)",
+                "type": "Seleccionar Tipo",
+                "label8": "TIPO",
+                "model": "Seleccionar Modelo",
+                "label9": "MODELO (Opcional)",
+                "brand": "Seleccionar Marca",
+                "label10": "MARCA (Opcional)",
+                "licen": "Placa",
+                "label11": "PLACA (Opcional)",
+                "proper": "Seleccionar Estado",
+                "label12": "ESTADO DE LA PROPIEDAD",
+                "vehi": "Seleccionar Vehículo",
+                "label13": "SELECCIONAR VEHÍCULO",
+                "add": "Agregar",
+                "up": "Actualizar",
+                "ne": "Siguiente",
+                "messages": {
+                    "succ": "Éxito",
+                    "descri1": "Esta logística se ha insertado correctamente",
+                    "descri2": "Esta logística se ha actualizado correctamente",
+                    "descri3": "Esta logística se ha eliminado correctamente",
+                    "title": "¡Ups! Algo salió mal.",
+                    "there": "Hubo un problema con tu solicitud."
+                }
+            },
+            "modalm": {
+                "create": "Crear Manufactura",
+                "title": "Actualizar Manufactura",
+                "process": "Proceso",
+                "label": "PROCESO",
+                "faci": "Seleccionar Instalación",
+                "label1": "INSTALACIÓN",
+                "type": "Tipo de Equipo",
+                "label2": "TIPO DE EQUIPO",
+                "fuel": "Tipo de Combustible Utilizado",
+                "label3": "TIPO DE COMBUSTIBLE UTILIZADO",
+                "code": "Código del Equipo",
+                "label4": "CÓDIGO DEL EQUIPO",
+                "add": "Agregar",
+                "up": "Actualizar",
+                "messages": {
+                    "succ": "Éxito",
+                    "desc1": "Este proceso de fabricación se ha insertado correctamente",
+                    "desc2": "Este proceso de fabricación se ha actualizado correctamente",
+                    "desc3": "Este proceso de fabricación se ha eliminado correctamente",
+                    "title": "¡Ups! Algo salió mal.",
+                    "error": "Hubo un problema con tu solicitud."
+                }
+            },
+            "modalc": {
+                "create": "Crear Desplazamiento",
+                "title": "Actualizar Desplazamiento",
+                "faci": "Seleccionar Instalación",
+                "label": "Instalación",
+                "des": "Descripción",
+                "label1": "DESCRIPCIÓN (Opcional)",
+                "add": "Agregar",
+                "up": "Actualizar",
+                "messages": {
+                    "succ": "Éxito",
+                    "desc1": "Este traslado se ha insertado correctamente",
+                    "desc2": "Este traslado se ha actualizado correctamente",
+                    "desc3": "Esta instalación se ha eliminado correctamente",
+                    "title": "¡Ups! Algo salió mal.",
+                    "desc": "Hubo un problema con tu solicitud."
+                }
+            },
+            "histori": {
+                "title": "Sede Central",
+                "new": "Nueva Medición",
+                "search": "Buscar"
+            },
+            "createm": {
+                "comm": {
+                    "origin": "Origen",
+                    "label": "ORIGEN",
+                    "zip": "Código postal de origen",
+                    "label1": "CÓDIGO POSTAL DE ORIGEN",
+                    "desti": "Destino",
+                    "label2": "DESTINO",
+                    "code": "Código postal de destino",
+                    "label3": "CÓDIGO POSTAL DE DESTINO",
+                    "dis": "Distancia del trayecto",
+                    "label4": "DISTANCIA",
+                    "mode": "Seleccionar transporte",
+                    "label5": "MODO DE TRANSPORTE",
+                    "fuel": "Eficiencia de combustible",
+                    "label6": "EFICIENCIA DE COMBUSTIBLE",
+                    "up": "Actualizar",
+                    "messagess": {
+                        "succ": "Éxito",
+                        "inv": "Esta factura ha sido",
+                        "cre": "creada",
+                        "up": "actualizada",
+                        "lly": "exitosamente",
+                        "wrong": "¡Oh no! Algo salió mal.",
+                        "was": "Hubo un problema con tu solicitud.",
+                        "des": "No fue posible calcular la distancia entre estos códigos postales."
+                    }
+                },
+                "fac": {
+                    "type": "SELECCIONAR TIPO",
+                    "emi": "FACTOR DE EMISIONES",
+                    "equipment": {
+                        "label": "TIPO DE EQUIPO",
+                        "placeholder": "Escribe el tipo de equipo"
+                    },
+                    "startDate": {
+                        "label": "FECHA DE INICIO"
+                    },
+                    "endDate": {
+                        "label": "FECHA DE FINALIZACIÓN"
+                    },
+                    "invoiceId": {
+                        "label": "ID DE FACTURA (OPCIONAL)",
+                        "placeholder": "ID de factura"
+                    },
+                    "selectType": {
+                        "label": "SELECCIONA UNA OPCIÓN",
+                        "placeholder": "Selecciona una opción"
+                    },
+                    "amount": {
+                        "label": "CANTIDAD",
+                        "placeholder": "Cantidad"
+                    },
+                    "unit": {
+                        "label": "UNIDAD",
+                        "placeholder": "Unidad"
+                    },
+                    "fugitiveEmissions": {
+                        "label": "MEDIR EMISIONES FUGITIVAS",
+                        "options": {
+                            "yes": "Sí",
+                            "no": "No"
+                        }
+                    },
+                    "amountYearsBeginning": {
+                        "label": "CANTIDAD AL INICIO DEL AÑO"
+                    },
+                    "amountYearsEnd": {
+                        "label": "CANTIDAD AL FINAL DEL AÑO"
+                    },
+                    "purchased": {
+                        "label": "COMPRADO"
+                    },
+                    "delivered": {
+                        "label": "ENTREGADO"
+                    },
+                    "chargedIntoEquipment": {
+                        "label": "CARGADO EN EL EQUIPO",
+                        "options": {
+                            "idk": "No lo sé"
+                        }
+                    },
+                    "returnsProducers": {
+                        "label": "DEVUELTO A LOS PRODUCTORES"
+                    },
+                    "returnedUsers": {
+                        "label": "DEVUELTO POR LOS USUARIOS"
+                    },
+                    "offSiteRecycling": {
+                        "label": "FUERA DEL SITIO PARA RECICLAJE"
+                    },
+                    "offSiteDestruction": {
+                        "label": "FUERA DEL SITIO PARA DESTRUCCIÓN"
+                    },
+                    "returnedOffsiteRecycling": {
+                        "label": "DEVUELTO DESPUÉS DE RECICLAJE FUERA DEL SITIO"
+                    },
+                    "partialNAmeplateCharged": {
+                        "label": "CARGADO CON CAPACIDAD PARCIAL DE PLACA"
+                    },
+                    "densityPressurePartial": {
+                        "label": "DENSIDAD O PRESIÓN DEL CAMBIO PARCIAL"
+                    },
+                    "densityPressureFull": {
+                        "label": "DENSIDAD O PRESIÓN DE LA CARGA COMPLETA"
+                    },
+                    "next": "Siguiente",
+                    "create": "Crear",
+                    "up": "Actualizar",
+                    "messages": {
+                        "succ": "Éxito",
+                        "inv": "Esta factura ha sido",
+                        "cre": "creada",
+                        "up": "actualizada",
+                        "lly": "exitosamente",
+                        "wrong": "¡Oh no! Algo salió mal.",
+                        "was": "Hubo un problema con tu solicitud."
+                    }
+                },
+                "log": {
+                    "lab1": "Por defecto",
+                    "lab2": "Opción 2",
+                    "label": "FACTOR DE EMISIONES",
+                    "ori": "Origen",
+                    "label1": "ORIGEN",
+                    "desti": "Destino",
+                    "label2": "DESTINO",
+                    "label3": "FECHA DE INICIO",
+                    "label4": "FECHA DE FIN",
+                    "id": "ID de factura",
+                    "label5": "ID DE FACTURA (OPCIONAL)",
+                    "type": "Tipo de combustible",
+                    "label6": "TIPO DE COMBUSTIBLE",
+                    "amo": "Cantidad",
+                    "label7": "CANTIDAD",
+                    "uni": "Unidad",
+                    "label8": "UNIDAD",
+                    "up": "Actualizar",
+                    "messages": {
+                        "succ": "Éxito",
+                        "inv": "Esta factura ha sido",
+                        "cre": "creada",
+                        "up": "actualizada",
+                        "lly": "exitosamente",
+                        "wrong": "¡Oh no! Algo salió mal.",
+                        "was": "Hubo un problema con tu solicitud.",
+                        "des": "No fue posible calcular la distancia entre estos códigos postales."
+                    }
+                },
+                "man": {
+                    "lab1": "Por defecto",
+                    "lab2": "Personalizado",
+                    "label": "FACTOR DE EMISIONES",
+                    "id": "ID de factura",
+                    "label1": "ID DE FACTURA (OPCIONAL)",
+                    "label2": "FECHA DE INICIO",
+                    "label3": "FECHA DE FIN",
+                    "amo": "Cantidad",
+                    "label4": "CANTIDAD",
+                    "unit": "Unidad",
+                    "label5": "UNIDAD",
+                    "up": "Actualizar",
+                    "tran": "Modo de transporte",
+                    "label6": "TRANSPORTE",
+                    "cal": "Seleccionar enfoque de cálculo",
+                    "label7": "ENFOQUE DE CÁLCULO"
+                }
+            }
+        },
+        "communicate": {
+            "title": "Comunicar",
+            "subtitle": "Comunicar el impacto ambiental de las actividades diarias",
+            "recent": "Informes Recientes",
+            "button": "Generar Nuevo Informe",
+            "report": {
+                "report_title": "Reporte de Impacto Ambiental",
+                "environmental_impact_by_scope": "Impacto Ambiental por Alcances (T/CO₂.)",
+                "environmental_impact_by_branch": "Impacto Ambiental por Sucursal (T/CO₂.)"
+            }
+        },
+        "capture": {
+            "title": "Captura",
+            "subtitle": "Descubre el impacto ambiental de las actividades diarias",
+            "produced": "Emisiones de CO2 Producidas",
+            "captured": "Emisiones de CO2 Capturadas",
+            "impact": "Equivalencia de Impacto",
+            "progress": "Progreso",
+            "carbon": {
+                "title": "Emisiones de Carbono",
+                "date": "hasta el 23 de noviembre de 2022, 09:41 PM",
+                "label1": "Producidas",
+                "label2": "Capturadas",
+                "label3": "Punto Único"
+            },
+            "particular": {
+                "title": "Emisiones de Materia Particulada",
+                "date": "hasta el 23 de noviembre de 2022, 09:41 PM"
+            },
+            "information": {
+                "title": "Información del Sistema",
+                "temperature": "Temperatura",
+                "humidity": "Humedad",
+                "pressure": "Presión",
+                "water": "Agua",
+                "chemical": "Tanque Químico",
+                "produced": "Yeso Producido"
+            }
+        },
+        "settings": {
+            "title": "Configuración",
+            "subtitle": "Administra tu información de usuario y cuenta",
+            "general": "General",
+            "manage": "Administra tu información de usuario y cuenta",
+           "admin": {
+                "title": "Cuenta de Administrador",
+                "admin": "Administrador",
+                "subtitle": "Comparte tu impacto positivo y descarga tu información",
+                "manager": "Gestor de Cuenta",
+                "button": "Nuevo Usuario",
+                "table": {
+                    "organization": "Organización",
+                    "name": "Nombre",
+                    "email": "Correo Electrónico",
+                    "status": "Estado",
+                    "options": "Opciones",
+                    "success": "Éxito",
+                    "description": "Este usuario ha sido deshabilitado exitosamente",
+                    "error": "¡Ups! Algo salió mal.",
+                    "descript": "Hubo un problema con tu solicitud.",
+                    "other": "Este usuario ha sido insertado exitosamente"
+                },
+                "modal": {
+                    "title": "Agregar Nuevo Usuario",
+                    "edit": "Actualizar Usuario",
+                    "name": "Nombre",
+                    "last": "Apellido",
+                    "role": "Rol",
+                    "typeOfUser": "Tipo de usuario",
+                    "adm": "Administrador",
+                    "us": "Usuario",
+                    "email": "Correo Electrónico",
+                    "pass": "Contraseña",
+                    "confirm": "Confirmar Contraseña",
+                    "phone": "Teléfono",
+                    "zone": "Zona Horaria",
+                    "lang": "Idioma",
+                    "add": "Agregar",
+                    "success": "Éxito",
+                    "description": "Este usuario ha sido creado exitosamente",
+                    "error": "¡Ups! Algo salió mal.",
+                    "descript": "Hubo un problema con tu solicitud."
+                }
+            },
+            "setup": {
+                "title": "Configurar Información de la Empresa",
+                "company": "Información de la Empresa",
+                "manage": "Administra tu información de usuario y cuenta",
+                "content1": {
+                    "name": "Nombre de la Empresa",
+                    "industry": "Industria",
+                    "country": "País",
+                    "state": "Estado",
+                    "city": "Ciudad",
+                    "zip": "Código Postal",
+                    "add": "Dirección",
+                    "phone": "Teléfono (Opcional)",
+                    "phonee": "Teléfono",
+                    "up": "Actualizar"
+                },
+                "content2": {
+                    "name": "Nombre",
+                    "sur": "Apellido",
+                    "user": "Tipo de Usuario",
+                    "email": "Correo Electrónico",
+                    "role": "Rol",
+                    "pass": "Contraseña",
+                    "phone": "Teléfono",
+                    "zone": "Zona Horaria",
+                    "lang": "Idioma"
+                },
+                "modal": {
+                    "name": "Nombre",
+                    "last": "Apellido",
+                    "role": "Rol",
+                    "email": "Correo electrónico",
+                    "pass": "Contraseña",
+                    "confirm": "Confirmar contraseña",
+                    "type": "Tipo de licencia",
+                    "phone": "Teléfono",
+                    "zone": "Zona horaria",
+                    "lang": "Idioma"
+                }
+            },
+            "report": {
+                "title": "Parámetros del Reporte",
+                "params": "Parámetros",
+                "manage": "Administra tu información de usuario y cuenta",
+                "option1": "Registro Nacional de Emisiones",
+                "option2": "Agencia de Protección Ambiental",
+                "option3": "Sí",
+                "option4": "No"
+            },
+            "change": {
+                "title": "Cambiar idioma",
+                "subtitle": "Selecciona un idioma de las opciones a continuación para cambiar el idioma de la aplicación."
+            },
+            "plan": {
+                "title": "Plan de Mejora",
+                "select": "Seleccionar Plan",
+                "choose": "Elige el plan perfecto para potenciar el seguimiento de tus emisiones y desbloquear funciones avanzadas",
+                "basic": {
+                    "title": "Básico",
+                    "subtitle": "Ideal para empresas que inician su camino climático",
+                    "button": "Seleccionar",
+                    "option1": "Mide emisiones de alcance 1, alcance 2 y alcance 3",
+                    "option2": "Informe de metodología GHG que detalla los factores de emisión y métodos utilizados",
+                    "option3": "Hasta un establecimiento",
+                    "option4": "Soporte en línea"
+                },
+                "pro": {
+                    "title": "Pro",
+                    "subtitle": "Ideal para empresas que quieren medir sus emisiones",
+                    "button": "Seleccionar",
+                    "option1": "Mide emisiones de alcance 1, alcance 2 y alcance 3",
+                    "option2": "Informe de metodología GHG que detalla los factores de emisión y métodos utilizados",
+                    "option3": "Comparte datos de emisiones con clientes, proveedores, inversionistas y otros interesados a través del Intercambio de Datos Scope 3",
+                    "option4": "Hasta 15 establecimientos",
+                    "option5": "Soporte en línea"
+                },
+                "advanced": {
+                    "title": "Avanzado",
+                    "subtitle": "Ideal para empresas que trabajan en establecer o alcanzar una meta de emisiones netas cero",
+                    "button": "Plan Actual",
+                    "label": "Todo lo incluido en el nivel Pro, y:",
+                    "option1": "Factores de emisión personalizados",
+                    "option2": "Experto en Soluciones Climáticas y Gerente de Éxito del Cliente dedicado",
+                    "option3": "Acceso con inicio de sesión único (SSO)",
+                    "option4": "Establecimientos ilimitados",
+                    "option5": "Integraciones, cargas masivas y acceso a API"
+                }
+            },
+            "support": "Soporte",
+            "extra": "Contenido extra para ayudarte en tu camino hacia el cero neto",
+            "tutorials": {
+                "title": "Tutoriales",
+                "master": "Domina el arte de medir y gestionar emisiones con nuestras guías paso a paso y recursos educativos.",
+                "getting": "Primeros Pasos",
+                "welcome": "¡Bienvenido! Aquí encontrarás recursos para dominar nuestra plataforma de medición de inventario de emisiones. Ya sea que estés comenzando o buscando ampliar tus conocimientos, nuestros tutoriales te ofrecen valiosas ideas y orientación.",
+                "written": {
+                    "title": "Guías Escritas",
+                    "step": "Guía Paso a Paso: Configura tu Cuenta",
+                    "detailed": "Una guía detallada para configurar tu cuenta, incluyendo cómo ingresar información de la empresa, configurar ajustes y personalizar tu panel.",
+                    "button1": "Leer Guía",
+                    "input": "Ingresar y Rastrear Datos de Emisiones",
+                    "learn": "Aprende a ingresar y monitorear tus datos de emisiones con precisión dentro de la plataforma. Esta guía cubre la entrada de datos, validación y mejores prácticas de seguimiento.",
+                    "button2": "Leer Guía"
+                },
+                "features": {
+                    "title": "Características Avanzadas",
+                    "metrics": "Personalización de Métricas y Reportes",
+                    "discover": "Descubre cómo personalizar las métricas y funciones de informes de la plataforma para adaptarlas a tus necesidades específicas. Esta guía te mostrará cómo personalizar vistas de datos, configurar alertas y más.",
+                    "button1": "Leer Guía",
+                    "other": "Integración con Otras Herramientas",
+                    "find": "Descubre cómo integrar la plataforma con otras herramientas y sistemas que tu empresa utiliza, como software de contabilidad o sistemas de gestión ambiental.",
+                    "button2": "Leer Guía"
+                },
+                "faqs": {
+                    "title": "Preguntas Frecuentes Relacionadas con los Tutoriales",
+                    "common": "Preguntas Comunes sobre el Uso de la Plataforma",
+                    "list": "Una lista de preguntas frecuentes relacionadas con los tutoriales y el uso de la plataforma. Encuentra respuestas rápidas y consejos para solucionar problemas.",
+                    "button": "Leer Preguntas Frecuentes"
+                },
+                "resources": {
+                    "title": "Recursos Adicionales",
+                    "user": "Manual de Usuario",
+                    "manual": "Un manual completo que cubre todos los aspectos de la plataforma, desde operaciones básicas hasta funciones avanzadas.",
+                    "button1": "Descargar Manual",
+                    "forum": "Foro Comunitario",
+                    "join": "Únete a nuestro foro comunitario para conectarte con otros usuarios, compartir consejos y hacer preguntas.",
+                    "button2": "Visitar Foro"
+                },
+                "contact": {
+                    "title": "Contactar Soporte",
+                    "help": "¿Necesitas ayuda? Contacta a nuestro equipo de soporte para asistencia.",
+                    "mail": "info@oxtron.mx"
+                }
+            },
+            "glossary": {
+                "title": "Glosario",
+                "subtitle": "Explora los términos, abreviaturas y marcos más comunes sobre contabilidad de carbono.",
+                "general": "General",
+                "manage": "Gestiona tu información de usuario y cuenta",
+                "lost": "No se encontraron palabras para esta letra en el glosario.",
+                "a": {
+                    "united": "Acuerdo 2030: Agenda 2030 de las Naciones Unidas",
+                    "definition1": "Plan para lograr un futuro mejor y más sostenible a nivel global. Creó 17 Objetivos de Desarrollo Sostenible (ODS) como guía para que los 193 países miembros luchen contra la pobreza y distribuyan los recursos globales de manera justa. Desde entonces, la Agenda 2030 para el Desarrollo Sostenible se ha convertido en la hoja de ruta más completa para compartir los recursos de la Tierra mediante un compromiso con la sostenibilidad económica, ambiental y social.",
+                    "allo": "Asignación",
+                    "definition2": "Un método estándar en la evaluación del ciclo de vida para dividir el impacto ambiental de un proceso entre los subproductos. Por ejemplo, una vaca emite una cantidad determinada de emisiones a lo largo de su vida hasta ser sacrificada. En este punto, varios productos habrán llegado a las estanterías: costillas, filete, carne molida, leche, queso, yogur. El enfoque de asignación determina cómo se distribuyen estas emisiones entre todos estos productos. Hay tres enfoques de asignación: asignación biofísica, asignación física y asignación económica.",
+                    "analysis": "Análisis: Evaluación del Ciclo de Vida (LCA)",
+                    "definition3": "Evaluación sistemática de los impactos ambientales de un producto a lo largo de su ciclo de vida, desde la extracción de recursos hasta su disposición final. Con este análisis, podemos estudiar las emisiones a lo largo de la cadena de valor, como la extracción, producción y distribución (de la cuna a la puerta), o incluso extender el análisis al uso final del producto, reutilización o reciclaje."
+                },
+                "b": {
+                    "bio": "Biodiversidad",
+                    "definition1": "Término que se refiere a la variedad, cantidad y variabilidad de los seres vivos en los ecosistemas terrestres y marinos. La biodiversidad considera no solo la variedad dentro de cada especie, sino también entre especies y en los ecosistemas. Factores como la sobreexplotación del ecosistema, la contaminación o el aumento de especies invasoras contribuyen a la pérdida de biodiversidad.",
+                    "biod": "Biodegradable",
+                    "definition2": "Propiedad de las sustancias que se descomponen en condiciones ambientales naturales. Los seres vivos como animales, hongos y bacterias pueden contribuir a su degradación. La creación de productos biodegradables es esencial en la lucha contra el cambio climático, ya que ayuda a evitar que los desechos persistan durante cientos o miles de años en vertederos.",
+                    "biof": "Biocombustible",
+                    "definition3": "Combustibles derivados de materia orgánica (biomasa) utilizados como fuente de energía. Al no provenir de combustibles fósiles, los biocombustibles son mucho menos contaminantes."
+                },
+                "c": {
+                    "carbon": "Captura de Carbono",
+                    "definition1": "El proceso de capturar y almacenar dióxido de carbono de la atmósfera. El dióxido de carbono puede almacenarse bajo tierra en lo que se llama secuestro geológico durante períodos geológicamente significativos. También puede almacenarse a corto plazo mediante plantas, agua y suelo en un proceso llamado secuestro biogénico.",
+                    "diox": "Equivalente de Dióxido de Carbono (CO2e)",
+                    "definition2": "El Equivalente de Dióxido de Carbono (CO2e) es la unidad de medida del efecto de calentamiento de los gases de efecto invernadero. El CO2e es la tasa a la que otros gases de efecto invernadero se convierten en carbono. La tasa de cambio expresa cuántos kilogramos de emisiones de dióxido de carbono calientan el clima de manera igual a 1 kg de otro gas de efecto invernadero en un período determinado (generalmente 100 años). El CO2e permite comparar y equiparar el impacto de diferentes gases de efecto invernadero en una única huella climática.",
+                    "negative": "Carbono Negativo",
+                    "definition3": "Certificación lograda al compensar el doble de las emisiones equivalentes de CO2 asociadas con actividades humanas, corporativas o nacionales. Esto no solo compensa el impacto de las actividades humanas, sino que también genera un impacto positivo en el medio ambiente al eliminar CO2 adicional de la atmósfera.",
+                    "neutral": "Carbono Neutral",
+                    "definition4": "Certificación lograda al compensar la cantidad equivalente de emisiones de CO2 asociadas con actividades humanas, corporativas o nacionales. De esta manera, las emisiones de CO2 generadas por estas actividades se evitan mediante la financiación de proyectos de energía limpia o sumideros de carbono.",
+                    "climate": "Cambio Climático",
+                    "definition5": "Se refiere a la alteración del clima de la Tierra en comparación con su registro global y regional histórico. Es causado por diversos factores naturales y antropogénicos, incluidos el calentamiento global o el agotamiento de la capa de ozono.",
+                    "conference": "Conferencia de las Partes (COP)",
+                    "definition6": "La Conferencia de las Partes (COP) es la reunión anual de las partes de la Convención Marco de las Naciones Unidas sobre el Cambio Climático (CMNUCC) para evaluar el estado global del cambio climático. El Acuerdo de París, un tratado internacional sobre cambio climático, fue adoptado en la COP de 2015. Cada COP desde entonces también ha servido como una reunión de las partes del Acuerdo de París para desarrollar las reglas del acuerdo y monitorear su implementación y resultados."
+                },
+                "d": {
+                    "deforestation": "Deforestación",
+                    "definition1": "La deforestación es la práctica de despejar áreas boscosas intencionalmente para usar la tierra y/o los recursos en actividades humanas. La deforestación tiene muchos efectos negativos sobre la biodiversidad, la erosión del suelo, el ciclo del agua y, especialmente, el clima.",
+                    "direct": "Directiva Europea Directa",
+                    "definition2": "Una herramienta del Parlamento Europeo para exigir a los estados miembros que cumplan un objetivo dentro de un período de tiempo específico (define el “qué”). Por ejemplo, una industria neta cero para 2050.",
+                    "emiss": "Emisiones Directas de N2O (Óxido Nitroso)",
+                    "definition3": "Las emisiones directas de N2O provienen directamente del nitrógeno en el suelo, originado en estiércol, fertilizantes y residuos de cultivos. El N2O se forma por bacterias del suelo en presencia de oxígeno."
+                },
+                "e": {
+                    "emiss": "Compensación de Emisiones",
+                    "definition1": "La búsqueda de neutralizar las emisiones de CO2 emitidas por una persona, cliente u organización. Se logra a través de la compra de créditos de carbono. Hay dos tipos principales de proyectos para obtener créditos de carbono: proyectos de ABSORCIÓN, como reforestación o carbono azul (biodiversidad marina), y proyectos de EVITACIÓN, como el uso de energía renovable o la transformación de biomasa, que evitan emisiones. Todos los proyectos deben estar certificados, ya sea a nivel nacional o internacional, y pueden ser públicos o privados.",
+                    "energy": "Eficiencia Energética",
+                    "definition2": "Optimizar el uso de energía para lograr el mismo nivel de bienestar adaptando el consumo a las necesidades reales o implementando sistemas de ahorro energético. La eficiencia energética asegura un suministro estable para toda una población o cadena de suministro. Uno de los marcos internacionales más utilizados para medir la eficiencia energética es la norma ISO 50001.",
+                    "fac": "Factor de Emisión",
+                    "definition3": "Los factores de emisión se refieren a valores numéricos que representan la cantidad de contaminantes o gases de efecto invernadero liberados a la atmósfera por unidad de actividad o producción. Estos factores se utilizan para calcular y estimar las emisiones totales generadas por diversas fuentes, como industrias, vehículos, procesos de combustión y generación de energía. Los factores de emisión son esenciales para evaluar y gestionar la contaminación atmosférica y el cambio climático.",
+                    "envi": "Derechos Ambientales",
+                    "definition4": "Un conjunto de estándares internacionales y regionales establecidos a partir de 1970 en respuesta a desastres ambientales como Chernobyl. Se basan en tres pilares fundamentales: prevenir el impacto ambiental negativo, garantizar el desarrollo sostenible y penalizar las prácticas perjudiciales."
+                },
+                "f": {
+                    "from": "De la Cuna a la Tumba",
+                    "definition1": "Una definición del alcance de las etapas consideradas en la evaluación del ciclo de vida de un producto, desde el momento en que se extraen las materias primas hasta el momento en que el consumidor las desecha.",
+                    "shelf": "De la Cuna al Estante",
+                    "definition2": "Una definición del alcance de las etapas consideradas en la evaluación del ciclo de vida de un producto, desde el momento en que se extraen las materias primas hasta el momento en que el producto llega al estante de la tienda."
+                },
+                "g": {
+                    "global": "Calentamiento Global",
+                    "definition1": "Proceso de aumento de la temperatura de la Tierra, que provoca el aumento del nivel del mar, una mayor frecuencia de fenómenos naturales, la expansión de áreas desérticas y cambios en la biodiversidad. El calentamiento global puede ser de origen natural o antropogénico y es causado por el aumento de gases de efecto invernadero.",
+                    "gas": "Emisiones de Gases de Efecto Invernadero (GEI)",
+                    "definition2": "A medida que el Sol calienta la Tierra, la superficie libera calor al espacio en forma de radiación infrarroja. Los gases de efecto invernadero absorben esta radiación, lo que a su vez calienta la atmósfera, creando un efecto invernadero. Desde la revolución industrial, la cantidad de gases de efecto invernadero liberados a la atmósfera ha aumentado debido a actividades humanas. Mayores concentraciones de gases de efecto invernadero significan una intensificación del efecto invernadero, lo que lleva a un mayor calentamiento del planeta. Los gases de efecto invernadero comunes incluyen el dióxido de carbono (CO2), el metano (CH4) y el óxido nitroso (N2O), así como gases producidos sintéticamente como los éteres fluorados, los hidrofluorocarbonos (HFC), los perfluorocarbonos (PFC) y otros. El efecto invernadero de un gas específico depende de tres factores: concentración, longevidad y potencia."
+                },
+                "i": {
+                "indirect": "Emisiones Indirectas de N2O (Óxido Nitroso)",
+                "definition": "Las emisiones indirectas de N2O ocurren a través de dos vías: 1) Después de la volatilización del nitrógeno del suelo como amoníaco (NH3) y óxidos de nitrógeno (NOx), y 2) Tras la lixiviación y escorrentía del nitrógeno del suelo. Las emisiones indirectas de N2O representan un tercio de las emisiones agrícolas globales de N2O."
+                },
+                "l": {
+                    "life": "Análisis del Ciclo de Vida (LCA)",
+                    "definition1": "El Análisis del Ciclo de Vida o Life Cycle Analysis (LCA) es el estudio que mide el impacto ambiental de un producto, proceso o servicio a lo largo de su producción y existencia. Los LCA son útiles para identificar las fuentes de emisiones de gases de efecto invernadero en cualquier etapa y entender el impacto climático de un producto.",
+                    "lime": "Caliza",
+                    "definition2": "La caliza es un acondicionador de suelos con un pH alto utilizado en la agricultura para reducir la acidez del suelo. También aumenta la concentración de calcio y magnesio, promoviendo el crecimiento de las plantas y mayores rendimientos. La caliza contiene carbono y, tras descomponerse, libera dióxido de carbono, incrementando su concentración en la atmósfera."
+                },
+                "n": {
+                    "net": "Carbono Neutral: Net Zero",
+                    "definition1": "Se refiere al equilibrio entre la cantidad de gases de efecto invernadero que ingresan a la atmósfera y la cantidad eliminada, ya sea mediante captura o reducción de emisiones en otros lugares. El término carbono neutral se ha popularizado con los objetivos Net Zero, un esquema corporativo cada vez más común para las metas climáticas.",
+                    "non": "Energía No Renovable",
+                    "definition2": "Energía derivada de recursos limitados. Tradicionalmente, las energías no renovables provienen de combustibles fósiles como el gas, el petróleo o el carbón, que han impulsado el progreso económico desde la revolución industrial. La energía nuclear se considera a menudo no renovable, aunque se cree que los depósitos de uranio proveerán energía nuclear hasta que el sol se extinga."
+                },
+                "p": {
+                    "paris": "Acuerdo de París",
+                    "definition1": "Un tratado internacional firmado por 196 países en la Conferencia de las Naciones Unidas sobre el Cambio Climático de 2015, cuyo objetivo es mantener el aumento de la temperatura global por debajo de los 2°C, preferentemente 1.5°C, por encima de los niveles preindustriales. Las metas de emisión global establecidas para este objetivo son una economía de carbono neutral para 2050 y una reducción del 50% de las emisiones de gases de efecto invernadero para 2030.",
+                    "product": "Ciclo de Vida del Producto (De la Cuna a la Tumba / De la Cuna al Estante)",
+                    "definition2": "El período que abarca desde la extracción de materias primas hasta la disposición final del producto o su llegada al estante para la venta al consumidor. Este enfoque considera todas las etapas del ciclo de vida del producto, desde la creación hasta la disposición final, incluyendo fabricación, distribución, uso y disposición final."
+                },
+                "r": {
+                    "rene": "Energía Renovable",
+                    "definition": "Energía obtenida de fuentes naturales e inagotables. Existen seis tipos de energía limpia: Hidroeléctrica, Marina, Geotérmica, Solar, Eólica y Biomasa. Su principal beneficio es la ausencia de emisiones de gases de efecto invernadero (GEI) en la atmósfera."
+                },
+                "s": {
+                    "seques": "Secuestro de Carbono",
+                    "definition1": "El secuestro de carbono se refiere al proceso de capturar y almacenar dióxido de carbono (CO2) de la atmósfera o fuentes industriales antes de que se libere en la atmósfera. Este proceso ayuda a reducir la cantidad de CO2 en la atmósfera, mitigando potencialmente el cambio climático y sus efectos adversos. Puede ocurrir de forma natural, como cuando las plantas absorben CO2 durante la fotosíntesis, o de forma inducida por humanos, mediante tecnologías como la captura y almacenamiento de carbono (CCS) en instalaciones industriales o promoviendo prácticas agrícolas que mejoren la captura de carbono en el suelo.",
+                    "scope": "Alcances 1, 2 y 3",
+                    "definition2": "Las emisiones de gases de efecto invernadero de las organizaciones se dividen en Alcances 1, 2 y 3 según el Protocolo de Gases de Efecto Invernadero, una herramienta de contabilidad. El Alcance 1 cubre las emisiones directas que una organización controla, posee y produce. El Alcance 2 representa las emisiones derivadas de la energía utilizada en las operaciones directas de una empresa, como electricidad comprada, calefacción o refrigeración. El Alcance 3 incluye las emisiones asociadas con las operaciones y cadena de suministro de una empresa que están fuera de su control, como las emisiones de los proveedores.",
+                    "science": "Metas Basadas en la Ciencia",
+                    "definition3": "Las Metas Basadas en la Ciencia son un marco para establecer objetivos climáticos desarrollado por la Iniciativa de Metas Basadas en la Ciencia (SBTi), que apoya a las empresas a establecer objetivos de reducción de emisiones en línea con el Acuerdo de París. SBTi es una colaboración entre el Carbon Disclosure Project (CDP), el World Resources Institute (WRI), el Pacto Mundial de las Naciones Unidas y el Fondo Mundial para la Naturaleza (WWF), y a menudo es el verificador de los objetivos Net Zero corporativos.",
+                    "susta": "Sostenibilidad",
+                    "definition4": "La capacidad de mantener o preservar algo en el tiempo, especialmente en relación con el medio ambiente, los recursos naturales y las prácticas económicas y sociales, de modo que se satisfagan las necesidades actuales sin comprometer la capacidad de las generaciones futuras para satisfacer las suyas.",
+                    "forest": "Bosque Sostenible",
+                    "definition5": "Bosques gestionados para proporcionar recursos mientras se conservan sus propiedades a lo largo del tiempo. Un bosque sostenible mantiene la biodiversidad y permite la regeneración. Sus beneficios son económicos, sociales y ambientales."
+                },
+                "t": {
+                    "trophic": "Cadena Trófica: Cadena Alimenticia",
+                    "definition": "Representación de los enlaces de alimentación de los seres vivos y sus intercambios de nutrientes y energía. Hay una pérdida significativa de energía a medida que se transfiere de un eslabón al siguiente. La cadena alimenticia es crucial para comprender el impacto ambiental en los seres vivos, ya que permite la acumulación de sustancias tóxicas que eventualmente llegan a los humanos."
+                },
+                "u": {
+                    "tream": "Emisiones Upstream/Downstream",
+                    "definition": "Emisiones que ocurren antes de las actividades de producción controladas por una organización, como la agricultura, refinación y envasado (emisiones upstream), y emisiones que ocurren después de que los productos salen del control de una organización, como la distribución a minoristas, el uso por parte de los consumidores y los desechos (emisiones downstream)."
+                },
+                "v": {
+                    "value": "Cadena de Valor",
+                    "definition": "La cadena de valor de una empresa es el conjunto de actividades interrelacionadas, desde la concepción de un producto o servicio, producción y distribución, hasta el marketing y soporte. Se divide en dos categorías: actividades primarias, como producción y ventas, y actividades de apoyo, como logística y tecnología. Optimizar esta cadena permite a las empresas crear valor, eficiencia y ventajas competitivas en el mercado."
+                }
+            },
+            "faqs": {
+                "title": "Preguntas Frecuentes",
+                "subtitle": "Encuentra respuestas a preguntas comunes y obtén soluciones rápidas para optimizar tu experiencia de seguimiento de emisiones.",
+                "general": "General",
+                "welcome": "Bienvenido a la sección de Preguntas Frecuentes (FAQs). Aquí encontrarás respuestas a preguntas comunes sobre nuestra plataforma de medición de inventario de emisiones. Si no encuentras lo que buscas, por favor contacta a nuestro equipo de soporte.",
+                "question1": "¿Qué es la plataforma de medición de inventario de emisiones?",
+                "answer1": "La plataforma es una herramienta que permite a las empresas medir, monitorear y reportar sus emisiones de gases de efecto invernadero. Ofrece funciones para la gestión de datos, generación de reportes y cumplimiento normativo.",
+                "question2": "¿Quién puede usar esta plataforma?",
+                "answer2": "Cualquier empresa interesada en rastrear y reducir sus emisiones de carbono puede usar la plataforma, sin importar su tamaño o industria.",
+                "set": "Configuración",
+                "question3": "¿Cómo configuro mi cuenta por primera vez?",
+                "answer3": "Para configurar tu cuenta, sigue los pasos en el tutorial 'Configuración Inicial' disponible en la sección de Tutoriales. Asegúrate de tener a la mano la información básica de tu empresa.",
+                "question4": "¿Puedo personalizar las métricas de seguimiento?",
+                "answer4": "Sí, puedes personalizar las métricas según tus necesidades específicas desde el panel de configuración. Consulta nuestro tutorial 'Personalización de Métricas' para más detalles.",
+                "tech": "Problemas Técnicos",
+                "question5": "No puedo acceder a mi cuenta, ¿qué debo hacer?",
+                "answer5": "Si tienes problemas para acceder a tu cuenta, intenta restablecer tu contraseña utilizando el enlace '¿Olvidaste tu contraseña?' en la página de inicio de sesión. Si el problema persiste, contacta a nuestro equipo de soporte técnico.",
+                "question6": "La plataforma no carga correctamente, ¿qué debo hacer?",
+                "answer6": "Asegúrate de estar utilizando un navegador compatible y de que tu conexión a internet sea estable. Borra la caché de tu navegador e intenta nuevamente. Si el problema continúa, contacta a nuestro equipo de soporte.",
+                "bill": "Facturación",
+                "question7": "¿Cómo puedo actualizar mi plan de suscripción?",
+                "answer7": "Puedes actualizar tu plan de suscripción en la sección 'Actualizar Plan' dentro de tu cuenta. Selecciona el plan que mejor se adapte a tus necesidades y sigue las instrucciones para completar la actualización.",
+                "question8": "¿Dónde puedo encontrar mis facturas?",
+                "answer8": "Las facturas están disponibles en la sección 'Historial de Facturación' de tu perfil de cuenta. Puedes descargar y revisar tus facturas en cualquier momento.",
+                "security": "Seguridad y Privacidad",
+                "question9": "¿Cómo se protege la información de mi empresa?",
+                "answer9": "La seguridad de tus datos es nuestra prioridad. Utilizamos cifrado de extremo a extremo y protocolos de seguridad avanzados para proteger tu información.",
+                "question10": "¿Cómo puedo eliminar mi cuenta y todos mis datos?",
+                "answer10": "Si deseas eliminar tu cuenta y todos tus datos, por favor contacta a nuestro equipo de soporte. Te ayudaremos con el proceso de eliminación de datos.",
+                "find": "¿No encuentras tu respuesta?",
+                "contact": "Contáctanos",
+                "email": "info@oxtron.mx"
+            },
+            "validation": {
+                "userForm": {
+                    "email": "Correo electrónico incorrecto",
+                    "password": {
+                        "min": "La contraseña debe tener al menos 7 caracteres",
+                        "max": "La contraseña debe tener menos de 15 caracteres"
+                        }
+                },
+                "userRegister": {
+                    "firstName": "El nombre es obligatorio",
+                    "lastName": "El apellido es obligatorio",
+                    "role": "El rol es obligatorio",
+                    "email": {
+                        "invalid": "Dirección de correo electrónico inválida",
+                        "required": "El correo electrónico es obligatorio"
+                    },
+                    "password": {
+                        "min": "La contraseña debe tener al menos 6 caracteres",
+                        "confirm": "La confirmación de la contraseña debe tener al menos 6 caracteres",
+                        "mismatch": "Las contraseñas no coinciden"
+                    },
+                    "organisationName": "El nombre de la organización es obligatorio",
+                    "city": "La ciudad es obligatoria",
+                    "state": "El estado es obligatorio",
+                    "country": "El país es obligatorio",
+                    "postalCode": "El código postal es obligatorio",
+                    "typeLicense": "Número inválido",
+                    "telephoneUser": "Debe ingresar su número de teléfono",
+                    "timeZone": "Debe ingresar su zona horaria",
+                    "language": "El idioma es obligatorio"
+                },
+                "userRegisterByCompanyId": {
+                    "idCompany": "idCompany es obligatorio",
+                    "firstName": "El nombre es obligatorio",
+                    "lastName": "El apellido es obligatorio",
+                    "role": "El rol es obligatorio",
+                    "email": {
+                        "invalid": "Dirección de correo electrónico inválida",
+                        "required": "El correo electrónico es obligatorio"
+                    },
+                    "password": {
+                        "min": "La contraseña debe tener al menos 6 caracteres",
+                        "confirm": "La confirmación de la contraseña debe tener al menos 6 caracteres",
+                        "mismatch": "Las contraseñas no coinciden"
+                    },
+                    "telephoneUser": "Debe ingresar su número de teléfono",
+                    "timeZone": "Debe ingresar su zona horaria",
+                    "language": "El idioma es obligatorio"
+                },
+                "forgotPassword": {
+                    "email": {
+                        "invalid": "Dirección de correo electrónico inválida",
+                        "required": "El correo electrónico es obligatorio"
+                    }
+                },
+                "updatePassword": {
+                    "email": {
+                        "invalid": "Dirección de correo electrónico inválida",
+                        "required": "El correo electrónico es obligatorio"
+                    },
+                    "passwordOld": "La contraseña actual es obligatoria",
+                    "passwordNew": "La nueva contraseña es obligatoria",
+                    "confirmPassword": "Por favor confirme su nueva contraseña",
+                    "mismatch": "Las contraseñas deben coincidir"
+                },
+                "updateUser": {
+                    "idUSerControl": "idUSerControl es obligatorio",
+                    "idCompany": "idCompany es obligatorio",
+                    "firstName": "El nombre es obligatorio",
+                    "lastName": "El apellido es obligatorio",
+                    "role": "El rol es obligatorio",
+                    "email": "El correo electrónico es obligatorio",
+                    "password": "La contraseña es obligatoria",
+                    "confirmPassword": "La confirmación de la contraseña debe tener al menos 6 caracteres",
+                    "active": "El estado activo es obligatorio",
+                    "idUSerType": "idUSerType es obligatorio",
+                    "telephoneUser": "El número de teléfono es obligatorio",
+                    "timeZone": "La zona horaria es obligatoria",
+                    "language": "El idioma es obligatorio",
+                    "mismatch": "Las contraseñas no coinciden"
+                },
+                "companyV": {
+                    "firstName": "El nombre es obligatorio",
+                    "lastName": "El apellido es obligatorio",
+                    "role": "El rol es obligatorio",
+                    "email": "El correo electrónico es obligatorio",
+                    "password": "La contraseña es obligatoria",
+                    "organisatioName": "El nombre de la organización es obligatorio",
+                    "city": "La ciudad es obligatoria",
+                    "state": "El estado es obligatorio",
+                    "country": "El país es obligatorio",
+                    "postalCode": "El código postal es obligatorio",
+                    "active": "El estado activo es obligatorio",
+                    "registrationDate": "La fecha de registro es obligatoria",
+                    "address": "La dirección es obligatoria",
+                    "telephoneCompany": "El número de teléfono de la empresa es obligatorio",
+                    "size": "El tamaño es obligatorio"
+                },
+                "facility": {
+                    "idControlFacility": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "idFacility": {
+                        "required": "El ID de la instalación es obligatorio"
+                    },
+                    "propertyStatus": {
+                        "required": "El estado de la propiedad es obligatorio"
+                    },
+                    "city": {
+                        "required": "La ciudad es obligatoria"
+                    },
+                    "country": {
+                        "required": "El país es obligatorio"
+                    }
+                },
+                "facilityDetails": {
+                    "idControlFacility": {
+                        "required": "Se requiere el Id de Control de la Instalación"
+                    },
+                    "idType": {
+                        "required": "Se requiere el Tipo de Id",
+                        "invalidNumber": "El Tipo de Id debe ser un número válido"
+                    },
+                    "idEmissionFactor": {
+                        "required": "Se requiere el Id del Factor de Emisión"
+                    },
+                    "startDate": {
+                        "required": "Se requiere la Fecha de Inicio"
+                    },
+                    "endDate": {
+                        "required": "Se requiere la Fecha de Finalización"
+                    },
+                    "idTypeDetails": {
+                        "required": "Se requieren los Detalles del Tipo de Id"
+                    },
+                    "amount": {
+                        "required": "Se requiere el Monto"
+                    },
+                    "measureFugitive": {
+                        "required": "Se requiere la Medida de Fugitivos"
+                    },
+                    "purchased": {
+                        "required": "Se requiere la Compra"
+                    },
+                    "delivered": {
+                        "required": "Se requiere la Entrega"
+                    },
+                    "returnsProducers": {
+                        "required": "Se requiere la Devolución a los Productores",
+                        "invalidNumber": "La Devolución a los Productores debe ser un número válido"
+                    },
+                    "returnedUsers": {
+                        "required": "Se requiere la Devolución de los Usuarios",
+                        "invalidNumber": "La Devolución de los Usuarios debe ser un número válido"
+                    },
+                    "returnedOffsiteRecycling": {
+                        "required": "Se requiere la Devolución para Reciclaje Fuera del Sitio"
+                    },
+                    "partialNAmeplateCharged": {
+                        "required": "Se requiere la Carga Parcial de la Placa de Identificación"
+                    },
+                    "amountYearsBeginning": {
+                        "required": "Se requiere el Monto al Inicio del Año"
+                    },
+                    "amountYearsEnd": {
+                        "required": "Se requiere el Monto al Final del Año",
+                        "charged": "Se requiere la Carga en el Equipo",
+                        "dont": "Se requiere el No Saber"
+                    },
+                    "offSiteRecycling": {
+                        "required": "Se requiere el Reciclaje Fuera del Sitio",
+                        "invalidNumber": "El Reciclaje Fuera del Sitio debe ser un número válido"
+                    },
+                    "offSiteDestruction": {
+                        "required": "Se requiere la Destrucción Fuera del Sitio",
+                        "valid": "La Destrucción Fuera del Sitio debe ser un número válido"
+                    },
+                    "densityPressurePartial": {
+                        "required": "Se requiere la Densidad de Presión Parcial",
+                        "valid": "La Presión Parcial de Densidad debe ser un número válido"
+                    },
+                    "densityPressureFull": {
+                        "required": "Se requiere la Densidad de Presión Completa",
+                        "valid": "La Presión Completa de Densidad debe ser un número válido"
+                    },
+                    "active": {
+                        "required": "Se requiere el Estado Activo"
+                    }
+                },
+                "facilityDescriptionDetails": {
+                    "idControlFacility": {
+                        "required": "Se requiere el Id del Control de la Instalación"
+                    },
+                    "idEmissionFactor": {
+                        "required": "Se requiere el Id del Factor de Emisión"
+                    },
+                    "startDate": {
+                        "required": "Se requiere la Fecha de Inicio"
+                    },
+                    "endDate": {
+                        "required": "Se requiere la Fecha de Finalización"
+                    },
+                    "idTypeDetails": {
+                        "required": "Se requieren los Detalles del Tipo de Id"
+                    },
+                    "amount": {
+                        "required": "Se requiere la Cantidad"
+                    },
+                    "fugitive": {
+                        "required": "Se requiere la Medida Fugitiva",
+                        "active": "Se requiere que esté Activo",
+                        "first": "Se requiere el Primer Nombre"
+                    }
+                },
+                "vehicle": {
+                    "idControlVehicle": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "idStatus": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "idCboBrand": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "idCboModel": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "idCboType": {
+                        "invalidNumber": "Número inválido"
+                    }
+                },
+                "vehicleDetails": {
+                    "idControlVehicle": {
+                        "required": "El campo Id Control Vehículo es obligatorio.",
+                        "integer": "Debe ser un número entero."
+                    },
+                    "idEmissionFactor": {
+                        "required": "El campo Id Factor De Emisión es obligatorio.",
+                        "integer": "Debe ser un número entero."
+                    },
+                    "startDate": {
+                        "required": "El campo Fecha De Inicio es obligatorio.",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601."
+                    },
+                    "endDate": {
+                        "required": "El campo Fecha De Fin es obligatorio.",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601.",
+                        "active": "El campo activo es requerido."
+                    }
+                },
+                "travel": {
+                    "idControlTravel": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "idTravel": {
+                        "required": "El ID de viaje es obligatorio"
+                    }
+                },
+                "travelDetails": {
+                    "idControlTravelDetails": {
+                        "integer": "Debe ser un número entero"
+                    },
+                    "idControlTravel": {
+                        "required": "El campo 'ID Control de Viaje' es requerido",
+                        "integer": "Debe ser un número entero"
+                    },
+                    "idEmissionFactor": {
+                        "required": "El campo 'ID del Factor de Emisión' es requerido",
+                        "integer": "Debe ser un número entero"
+                    },
+                    "startDate": {
+                        "required": "El campo 'Fecha de Inicio' es requerido",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601"
+                    },
+                    "endDate": {
+                        "required": "El campo 'Fecha de Fin' es requerido",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601"
+                    },
+                    "active": {
+                        "required": "El campo 'Activo' es requerido",
+                        "integer": "Debe ser un número entero"
+                    }
+                },
+                "travelDescriptionDetails": {
+                    "idControlTravelDetails": {
+                        "integer": "Debe ser un número entero"
+                    },
+                    "idControlTravel": {
+                        "required": "El campo 'Id Control de Viaje' es requerido",
+                        "integer": "Debe ser un número entero"
+                    },
+                    "idEmissionFactor": {
+                        "required": "El campo 'Id del Factor de Emisión' es requerido",
+                        "integer": "Debe ser un número entero"
+                    },
+                    "idEmissionFactorDescription": {
+                        "required": "El campo 'Descripción del Id del Factor de Emisión' es requerido"
+                    },
+                    "idTravelCboType": {
+                        "required": "El campo 'Id Tipo de Viaje Cbo' es requerido",
+                        "integer": "Debe ser un número entero"
+                    },
+                    "travelCboTypeDescription": {
+                        "required": "El campo 'Descripción del Tipo de Viaje Cbo' es requerido"
+                    },
+                    "startDate": {
+                        "required": "El campo 'Fecha de Inicio' es requerido",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601"
+                    },
+                    "endDate": {
+                        "required": "El campo 'Fecha de Fin' es requerido",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601"
+                    },
+                    "active": {
+                        "required": "El campo 'Activo' es requerido",
+                        "integer": "Debe ser un número entero"
+                    }
+                },
+                "logistic": {
+                    "idControlLogistics": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "idCboStatus": {
+                        "positive": "Este campo es obligatorio"
+                    },
+                    "idTravelCboType": {
+                        "positive": "Este campo es obligatorio"
+                    },
+                    "idCboModel": {
+                        "positive": "Este campo es obligatorio"
+                    },
+                    "idCboBrand": {
+                        "positive": "Este campo es obligatorio"
+                    }
+                },
+                "logisticDetails": {
+                    "idControlLogisticsDetails": {
+                        "integer": "Debe ser un número entero"
+                    },
+                    "idControlLogistics": {
+                        "required": "El campo 'Id Control de Logística' es requerido",
+                        "integer": "Debe ser un número entero"
+                    },
+                    "idEmissionFactor": {
+                        "required": "El campo 'Id del Factor de Emisión' es requerido",
+                        "integer": "Debe ser un número entero"
+                    },
+                    "startDate": {
+                        "required": "El campo 'Fecha de Inicio' es requerido",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601"
+                    },
+                    "endDate": {
+                        "required": "El campo 'Fecha de Fin' es requerido",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601"
+                    },
+                    "idFuelType": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "amount": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "active": {
+                        "required": "El campo 'Activo' es requerido",
+                        "integer": "Debe ser un número entero"
+                    }
+                },
+                "manufacturing": {
+                    "idControlManufacturing": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "process": {
+                        "minLength": "El proceso debe tener al menos 1 carácter"
+                    },
+                    "idFacility": {
+                        "required": "El campo 'Facility' es obligatorio"
+                    },
+                    "idTypeEquipment": {
+                        "positive": "Este campo es obligatorio"
+                    },
+                    "idTypeFuelUsed": {
+                        "positive": "Este campo es obligatorio"
+                    },
+                    "idTypeEquipmentCode": {
+                        "positive": "Este campo es obligatorio"
+                    }
+                },
+                "manufacturingDetails": {
+                    "idControlManufacturingDetails": {
+                        "integer": "Debe ser un número entero"
+                    },
+                    "idControlManufacturing": {
+                        "required": "El campo 'Id Control de Manufactura' es requerido",
+                        "integer": "Debe ser un número entero"
+                    },
+                    "idEmissionFactor": {
+                        "required": "El campo 'Id del Factor de Emisión' es requerido",
+                        "integer": "Debe ser un número entero"
+                    },
+                    "startDate": {
+                        "required": "El campo 'Fecha de Inicio' es requerido",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601"
+                    },
+                    "endDate": {
+                        "required": "El campo 'Fecha de Fin' es requerido",
+                        "datetime": "Debe ser una fecha válida en formato ISO 8601"
+                    },
+                    "amount": {
+                        "invalidNumber": "Número inválido"
+                    },
+                    "active": {
+                        "required": "El campo 'Activo' es requerido",
+                        "integer": "Debe ser un número entero"
+                    }
+                },
+                "commuting": {
+                    "facilityRequired": "El campo 'Facility' es obligatorio",
+                    "invalidNumber": "Número inválido"
+                },
+                "commutingDetails": {
+                    "control": "El campo 'Id Control de Detalles de Commuting' es requerido.",
+                    "integer": "Debe ser un número entero.",
+                    "required": "El campo 'Id Control de Commuting' es requerido.",
+                    "fuel": "El campo 'Eficiencia de Combustible' es requerido.",
+                    "number": "Número inválido."
+                },
+                "details": {
+                    "control": "El campo 'Id Control de Detalles de Commuting' es requerido.",
+                    "commu": "El campo 'Id Control de Commuting' es requerido.",
+                    "fuel": "El campo 'Eficiencia de Combustible' es requerido.",
+                    "number": "Número inválido.",
+                    "positive": "Debe ser un número entero positivo.",
+                    "mode": "Este campo es requerido."
+                },
+                "company": {
+                    "first": "El Nombre es requerido",
+                    "last": "El Apellido es requerido",
+                    "role": "El Rol es requerido",
+                    "email": "El Correo Electrónico es requerido",
+                    "passw": "La Contraseña es requerida",
+                    "organ": "El Nombre de la Organización es requerido",
+                    "city": "La Ciudad es requerida",
+                    "state": "El Estado es requerido",
+                    "country": "El País es requerido",
+                    "postal": "El Código Postal es requerido",
+                    "active": "El Estado Activo es requerido",
+                    "regis": "La Fecha de Registro es requerida",
+                    "add": "La Dirección es requerida",
+                    "tel": "El Teléfono de la Empresa es requerido",
+                    "size": "El Tamaño es requerido"
+                },
+                "report": {
+                    "id": "El campo 'ID' es obligatorio",
+                    "start": "Fecha de inicio inválida",
+                    "end": "Fecha de finalización inválida",
+                    "active": "El campo 'active' es obligatorio",
+                    "number": "Número inválido."
+                },
+                "combo": {
+                    "des": "La descripción es obligatoria.",
+                    "unit": "Las unidades son obligatorias."
+                },
+                "logistics": {
+                    "number": "Debe ser un número entero",
+                    "control": "El campo 'Id Control Logística' es requerido",
+                    "emi": "El campo 'Id Factor de Emisiones' es requerido",
+                    "start": "El campo 'Fecha de Inicio' es requerido",
+                    "date": "Debe ser una fecha válida en formato ISO 8601",
+                    "end": "El campo 'Fecha de Fin' es requerido",
+                    "in": "Número inválido",
+                    "active": "El campo 'Activo' es requerido",
+                    "fac": "El campo 'Id Control Manufactura' es requerido"
+                }
+            }
+        }
+    }
+}
