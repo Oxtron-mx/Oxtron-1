@@ -10,7 +10,7 @@ import {Facility, Manufacturing} from "@/lib/validation";
 import {getFacilitiesByUserId} from "@/actions/measure/facilities";
 import {ComboFuel, ComboTypeOfEquipment} from "@/constants/types";
 import { getEmissionFactorSubtypes, getEquipmentTypes } from '@/services/CatalogService';
-import { getManufacturing } from '@/services/Manufacturing';
+import { getManufacturing, postManufacturing } from '@/services/Manufacturing';
 
 type ManufacturingStore = {
   manufacturing: Manufacturing[];
@@ -89,7 +89,7 @@ export const useManufacturingStore = create<ManufacturingStore>((set) => ({
   createManufacturing: async (manufacture) => {
     set({loading: true});
     try {
-      const response = await createManufacturing(manufacture);
+      const response = await postManufacturing(manufacture);
       const fetchResponse = await getManufacturing();
 
       set({manufacturing: fetchResponse.data, error: null, loading: false});

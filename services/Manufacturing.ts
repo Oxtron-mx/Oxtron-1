@@ -22,3 +22,18 @@ export const getManufacturing = async () => {
     console.error(error);
   }
 };
+
+export const postManufacturing = async (manufacturing: any) => {
+    const params = {
+            "name": manufacturing.process,
+            "facility_id": manufacturing.idFacility,
+            "equipment_id": manufacturing.idTypeEquipment, //Anionic Furnance
+            "emission_factor_id": manufacturing.idTypeFuelUsed //Blast Furnace Gas
+        }
+  try {
+    const {data} = await axiosInstance.post(`/api/manufacturing`, params);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

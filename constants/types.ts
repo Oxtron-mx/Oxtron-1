@@ -408,6 +408,7 @@ export interface ComboTypeOfEquipment {
     name: string;
     id: string;
     description: string;
+    active?: number
 }
 
 export interface ComboTypeOfLicense {
