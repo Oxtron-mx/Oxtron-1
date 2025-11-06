@@ -109,12 +109,12 @@ export const useManufacturing = () => {
       label: facility.idFacility,
     })) || [])
     setFuelOptions(fuel?.map((f) => ({
-      value: f.idControl.toString(),
-      label: f.description,
+      value: f.id.toString(),
+      label: f.name,
     })) || [])
     setEquipmentOptions(equipment?.map((eq) => ({
-      value: eq.idManufacturingCboEquipment.toString() || '0',
-      label: eq.description,
+      value: eq.id.toString() || '0',
+      label: eq.name,
     })) || [])
     setLoading(false)
   }, [facilities, fuel, equipment]);
