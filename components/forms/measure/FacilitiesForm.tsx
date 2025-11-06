@@ -1,7 +1,7 @@
-import {Form} from "@/components/ui/form";
-import CustomFormField, {FormFieldType} from "@/components/CustomFormField";
+import { Form } from "@/components/ui/form";
+import CustomFormField, { FormFieldType } from "@/components/CustomFormField";
 import SubmitButton from "@/components/SubmitButton";
-import {Facility} from "@/lib/validation";
+import { Facility } from "@/lib/validation";
 import Loading from "@/components/loading/LoadingBlack";
 import { useEffect, useState } from "react";
 import { getCities } from "@/services/CatalogService";
@@ -11,8 +11,8 @@ type Props = {
   loading: boolean;
   options: Option[];
   countries: Option[];
-  dictionary: any,
-  form: any,
+  dictionary: any;
+  form: any;
   onSubmit: (facility: Facility) => Promise<void>;
 };
 
@@ -25,31 +25,34 @@ const FacilitiesForm = ({
   dictionary,
   form,
 }: Props) => {
-
   const [cities, setCities] = useState<Option[]>([]);
 
   const utilGetCities = async (countryId: string) => {
     const citiesRes = await getCities(countryId);
-    if(citiesRes.success){
-      const options: Option[] = citiesRes?.data?.map((city: any) => (
-        {
+    if (citiesRes.success) {
+      const options: Option[] =
+        citiesRes?.data?.map((city: any) => ({
           value: city.id.toString(),
           label: city.city,
-        }
-      )) || []
-      setCities(options)
+        })) || [];
+      setCities(options);
     }
-  }
+  };
 
-  useEffect(()=>{
-    if(form.watch('country')){
-      utilGetCities(form.watch('country'));
+  const country = form.watch("country");
+
+  useEffect(() => {
+    // reset city when country changes
+    setCities([]);
+    form.setValue("city", "");
+    if (country) {
+      utilGetCities(country);
     }
-  },[form.watch('country')])
+  }, [country]);
 
-  return (!dictionary || loading) ? (
+  return !dictionary || loading ? (
     <div className="flex items-center justify-center w-full h-full">
-      <Loading/>
+      <Loading />
     </div>
   ) : (
     <Form {...form}>
@@ -89,7 +92,7 @@ const FacilitiesForm = ({
             options={cities}
             control={form.control}
           />
-          
+
           <div className="col-span-2">
             <CustomFormField
               fieldType={FormFieldType.TEXTAREA}
