@@ -90,9 +90,9 @@ export interface ComboType {
     active: number;
 }
 export interface ComboFuel {
-    idControl: number;
+    id: number;
+    name: string;
     description: string;
-    units: string;
 }
 export interface ComboRole {
     idCatRole:   number;
@@ -405,9 +405,9 @@ export interface BasicResponse<T> {
 }
 
 export interface ComboTypeOfEquipment {
-    idManufacturingCboEquipment: number;
+    name: string;
+    id: string;
     description: string;
-    active: number;
 }
 
 export interface ComboTypeOfLicense {

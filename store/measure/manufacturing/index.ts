@@ -9,6 +9,8 @@ import {
 import {Facility, Manufacturing} from "@/lib/validation";
 import {getFacilitiesByUserId} from "@/actions/measure/facilities";
 import {ComboFuel, ComboTypeOfEquipment} from "@/constants/types";
+import { getEmissionFactorSubtypes, getEquipmentTypes } from '@/services/CatalogService';
+import { getManufacturing } from '@/services/Manufacturing';
 
 type ManufacturingStore = {
   manufacturing: Manufacturing[];
@@ -55,8 +57,8 @@ export const useManufacturingStore = create<ManufacturingStore>((set) => ({
     set({loading: true});
     try {
       const facilitiesResponse = await getFacilitiesByUserId();
-      const fuelResponse = await getCboFuelType();
-      const equipmentResponse = await getTypeOfEquipment();
+      const fuelResponse = await getEmissionFactorSubtypes();
+      const equipmentResponse = await getEquipmentTypes();
 
       set({
         facilities: facilitiesResponse.data,
@@ -72,7 +74,7 @@ export const useManufacturingStore = create<ManufacturingStore>((set) => ({
   fetchManufacturing: async () => {
     set({loading: true});
     try {
-      const response = await getManufacturingByUserId();
+      const response = await getManufacturing();
       set({manufacturing: response.data, error: null, loading: false});
     } catch (error) {
       set({error: 'Failed to fetch manufacturing', loading: false});
@@ -88,7 +90,7 @@ export const useManufacturingStore = create<ManufacturingStore>((set) => ({
     set({loading: true});
     try {
       const response = await createManufacturing(manufacture);
-      const fetchResponse = await getManufacturingByUserId();
+      const fetchResponse = await getManufacturing();
 
       set({manufacturing: fetchResponse.data, error: null, loading: false});
 
@@ -101,7 +103,7 @@ export const useManufacturingStore = create<ManufacturingStore>((set) => ({
     set({loading: true});
     try {
       const response = await updateManufacturing(updatedManufacturing);
-      const fetchResponse = await getManufacturingByUserId();
+      const fetchResponse = await getManufacturing();
 
       set({manufacturing: fetchResponse.data, error: null, loading: false});
 
@@ -114,7 +116,7 @@ export const useManufacturingStore = create<ManufacturingStore>((set) => ({
     set({loading: true});
     try {
       const response = await deleteManufacturing(id);
-      const fetchResponse = await getManufacturingByUserId();
+      const fetchResponse = await getManufacturing();
 
       set({manufacturing: fetchResponse.data, error: null, loading: false});
 
