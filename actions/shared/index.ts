@@ -178,9 +178,9 @@ export async function getCboElectricityType(): Promise<
       name: string;
     }>;
     const data: ComboFuel[] = apiData.map((e) => ({
-      idControl: e.id,
+      id: e.id,
+      name: e.name,
       description: e.name,
-      units: "",
     }));
 
     return { success: true, status: 200, message: "Success", data };
@@ -199,9 +199,9 @@ export async function getCboFuelType(): Promise<ApiResponse<ComboFuel[]>> {
       name: string;
     }>;
     const data: ComboFuel[] = apiData.map((f) => ({
-      idControl: f.id,
+      id: f.id,
+      name: f.name,
       description: f.name,
-      units: "",
     }));
 
     return { success: true, status: 200, message: "Success", data };
@@ -220,9 +220,9 @@ export async function getCboGasType(): Promise<ApiResponse<ComboFuel[]>> {
       name: string;
     }>;
     const data: ComboFuel[] = apiData.map((g) => ({
-      idControl: g.id,
+      id: g.id,
+      name: g.name,
       description: g.name,
-      units: "",
     }));
 
     return { success: true, status: 200, message: "Success", data };
@@ -243,9 +243,9 @@ export async function getCboRefrigerantsType(): Promise<
       name: string;
     }>;
     const data: ComboFuel[] = apiData.map((r) => ({
-      idControl: r.id,
+      id: r.id,
+      name: r.name,
       description: r.name,
-      units: "",
     }));
 
     return { success: true, status: 200, message: "Success", data };
