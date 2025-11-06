@@ -23,7 +23,11 @@ import {Locale} from "date-fns";
 import {getDictionary} from "@/lib/dictionary";
 import Loading from "@/components/loading/LoadingBlack";
 
-type Props = { idControlFacility: number; facility?: FacilityDescriptionDetails; reloadData: () => void };
+type Props = { 
+  idControlFacility: number; 
+  facility?: FacilityDescriptionDetails; 
+  reloadData: () => void 
+};
 
 export const FacilityInvoiceForm = ({idControlFacility, facility, reloadData}: Props) => {
   const [idType, setIdType] = useState<string>(facility?.idType.toString() || '')
@@ -290,9 +294,9 @@ export const FacilityInvoiceForm = ({idControlFacility, facility, reloadData}: P
                 </div>
                 <div className="flex justify-center w-full gap-4">
                   <CustomFormField
+                    fieldType={FormFieldType.INPUT}
                     control={form.control}
                     name="typeEquipment"
-                    fieldType={FormFieldType.INPUT}
                     label={dictionary.equipment.label}
                     placeholder={dictionary.equipment.placeholder}
                   />

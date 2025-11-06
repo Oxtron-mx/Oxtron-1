@@ -1,9 +1,11 @@
 'use client'
 
 import {useManufacturing} from "@/hooks/measure/manufacturing/useManufaturing";
+import { getEmissionFactorSubtypes } from "@/services/CatalogService";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 // ⬇️ Importaciones dinámicas para evitar errores de SSR (document is not defined)
 const Loading = dynamic(() => import("@/components/loading/LoadingBlack"), { ssr: false });

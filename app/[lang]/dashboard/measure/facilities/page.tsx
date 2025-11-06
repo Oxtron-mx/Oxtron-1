@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import {useFacilities} from "@/hooks/measure";
+import { useEffect, useState } from "react";
+import { getCountries } from "@/services/CatalogService";
 
 // ⬇️ Importaciones dinámicas para evitar errores de SSR
 const Loading = dynamic(() => import("@/components/loading/LoadingBlack"), { ssr: false });
@@ -27,6 +29,25 @@ export default function FacilitiesPage() {
     form
   } = useFacilities();
   const path = usePathname();
+  const [countries, setCountries] = useState<Option[]>([]);
+
+  const utilGetCountries = async () => {
+    const countriesRes = await getCountries();
+
+    if(countriesRes.success){
+      const options: Option[] = countriesRes?.data?.map((country: any) => (
+        {
+          value: country.id.toString(),
+          label: country.name,
+        }
+      )) || []
+      setCountries(options)
+    }   
+  }
+
+  useEffect(()=>{
+    utilGetCountries();
+  },[])
 
   return (loading || !dictionary) ? (
     <div className="flex items-center justify-center w-full h-full">
@@ -53,6 +74,7 @@ export default function FacilitiesPage() {
             loading={loading}
             facility={facility}
             options={options}
+            countries={countries}
             dictionary={dictionary}
             form={form}
             onSubmit={onSubmit}

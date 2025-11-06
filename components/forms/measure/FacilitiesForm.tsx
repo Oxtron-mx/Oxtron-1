@@ -3,11 +3,14 @@ import CustomFormField, {FormFieldType} from "@/components/CustomFormField";
 import SubmitButton from "@/components/SubmitButton";
 import {Facility} from "@/lib/validation";
 import Loading from "@/components/loading/LoadingBlack";
+import { useEffect, useState } from "react";
+import { getCities } from "@/services/CatalogService";
 
 type Props = {
   facility: Facility | null;
   loading: boolean;
   options: Option[];
+  countries: Option[];
   dictionary: any,
   form: any,
   onSubmit: (facility: Facility) => Promise<void>;
@@ -17,10 +20,33 @@ const FacilitiesForm = ({
   facility,
   loading = false,
   options,
+  countries,
   onSubmit,
   dictionary,
   form,
 }: Props) => {
+
+  const [cities, setCities] = useState<Option[]>([]);
+
+  const utilGetCities = async (countryId: string) => {
+    const citiesRes = await getCities(countryId);
+    if(citiesRes.success){
+      const options: Option[] = citiesRes?.data?.map((city: any) => (
+        {
+          value: city.id.toString(),
+          label: city.city,
+        }
+      )) || []
+      setCities(options)
+    }
+  }
+
+  useEffect(()=>{
+    if(form.watch('country')){
+      utilGetCities(form.watch('country'));
+    }
+  },[form.watch('country')])
+
   return (!dictionary || loading) ? (
     <div className="flex items-center justify-center w-full h-full">
       <Loading/>
@@ -48,19 +74,22 @@ const FacilitiesForm = ({
             control={form.control}
           />
           <CustomFormField
-            fieldType={FormFieldType.INPUT}
-            name="city"
-            placeholder={dictionary.measure.modal.city}
-            label={dictionary.measure.modal.city}
-            control={form.control}
-          />
-          <CustomFormField
-            fieldType={FormFieldType.INPUT}
+            fieldType={FormFieldType.SELECT}
             name="country"
             label={dictionary.measure.modal.country}
             placeholder={dictionary.measure.modal.country}
+            options={countries}
             control={form.control}
           />
+          <CustomFormField
+            fieldType={FormFieldType.SELECT}
+            name="city"
+            placeholder={dictionary.measure.modal.city}
+            label={dictionary.measure.modal.city}
+            options={cities}
+            control={form.control}
+          />
+          
           <div className="col-span-2">
             <CustomFormField
               fieldType={FormFieldType.TEXTAREA}

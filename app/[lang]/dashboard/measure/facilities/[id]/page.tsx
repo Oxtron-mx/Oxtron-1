@@ -13,6 +13,7 @@ import {Facility, FacilityDetails} from "@/lib/validation";
 import {FacilityInvoiceForm} from "@/components/forms/measure/Details/FacilityInvoiceForm";
 import {toast} from "@/components/ui/use-toast";
 import {getFacilitiesByUserId} from "@/actions/measure/facilities";
+import { getEquipmentTypes } from "@/services/CatalogService";
 
 type Props = { params: { id: number } };
 
@@ -52,6 +53,7 @@ export default function FacilitiesDetailPage({params: {id}}: Props) {
     setIsLoading(false)
     handleHideModal()
   }
+
 
   const handleOnClick = () => {
     setSelectedRow(null)
