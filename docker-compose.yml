@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: oxtron-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - AUTH_URL=${AUTH_URL:-http://localhost:3000}
+      - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8000}
+      - NEXT_PUBLIC_X_API_KEY=${NEXT_PUBLIC_X_API_KEY:-}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET:-${AUTH_SECRET:-}}
+      - AUTH_SECRET=${AUTH_SECRET:-${NEXTAUTH_SECRET:-}}
+    restart: unless-stopped
+    networks:
+      - oxtron-network
+
+networks:
+  oxtron-network:
+    driver: bridge
+

@@ -1,36 +1,19 @@
-.PHONY: build run dev stop clean
-
-build:
-	docker build -t oxtron-app .
+.PHONY: run dev stop clean
 
 run:
-	docker run -p 3000:3000 \
+	@docker build -t oxtron-app . && \
+	docker run --rm -p 3000:3000 \
 		-e AUTH_SECRET=$$(openssl rand -base64 32) \
 		-e AUTH_URL=http://localhost:3000 \
+		-e NEXT_PUBLIC_API_BASE_URL=$${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8000} \
+		-e NEXT_PUBLIC_X_API_KEY=$${NEXT_PUBLIC_X_API_KEY:-} \
 		oxtron-app
 
 dev:
 	npm run dev
 
 stop:
-	docker stop $$(docker ps -q --filter ancestor=oxtron-app) || true
+	@docker stop $$(docker ps -q --filter ancestor=oxtron-app) 2>/dev/null || true
 
 clean:
-	docker rmi oxtron-app || true
-	docker system prune -f
-
-deploy:
-	PROJECT_ID=second-broker-453715-e5
-	REGION=us-central1
-	REPO=oxtron-frontend-repo
-	SERVICE_NAME=oxtron-frontend
-	IMAGE=$${REGION}-docker.pkg.dev/$${PROJECT_ID}/$${REPO}/$${SERVICE_NAME}:latest
-	docker buildx build --platform linux/amd64 -t $${IMAGE} --push .
-	gcloud run deploy $${SERVICE_NAME} \
-	  --image $${IMAGE} \
-	  --region $${REGION} \
-	  --platform managed \
-	  --allow-unauthenticated \
-	  --port 3000
-
-build-run: build run
+	@docker rmi oxtron-app 2>/dev/null || true
