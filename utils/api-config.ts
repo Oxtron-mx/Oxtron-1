@@ -7,13 +7,14 @@ export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
 
 /**
- * Obtiene el API key para autenticación
+ * Obtiene el JWT access token de la sesión actual.
+ * 
+ * @deprecated Use getAccessToken from utils/auth-helpers.ts instead
+ * @returns Access token string or null if not authenticated
  */
-export async function getApiKey(): Promise<string> {
-  return (
-    process.env.NEXT_PUBLIC_X_API_KEY ||
-    "5bb186bae06a2fd28eddb6a512f43dd2a3e62440d2242f9bda7bbbffa7f1ac11"
-  );
+export async function getAccessToken(): Promise<string | null> {
+  const { getAccessToken: getToken } = await import("./auth-helpers");
+  return getToken();
 }
 
 /**
@@ -24,8 +25,11 @@ export function mapPropertyStatusToNumber(status: string | number): number {
 
   const statusMap: Record<string, number> = {
     Propiedad: 1,
+    Owned: 1,
     Arrendada: 2,
+    Rented: 2,
     Alquilada: 3,
+    Leased: 3,
   };
 
   return statusMap[status] || 1;

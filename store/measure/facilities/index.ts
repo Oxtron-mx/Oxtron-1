@@ -44,11 +44,19 @@ export const useFacilityStore = create<FacilityStore>((set) => ({
   fetchFacilities: async () => {
     set({loading: true});
     try {
+      console.log('FacilityStore: Starting fetchFacilities');
       const response = await getFacilitiesByUserId();
-      set({facilities: response.data, error: null, loading: false});
-      console.log(response)
+      console.log('FacilityStore: Response received', response);
+      if (response.success) {
+        set({facilities: response.data || [], error: null, loading: false});
+        console.log('FacilityStore: Facilities set', response.data);
+      } else {
+        console.error('FacilityStore: Response not successful', response);
+        set({facilities: [], error: response.message || 'Failed to fetch facilities', loading: false});
+      }
     } catch (error) {
-      set({error: 'Failed to fetch facilities', loading: false});
+      console.error('FacilityStore: Error fetching facilities', error);
+      set({error: 'Failed to fetch facilities', loading: false, facilities: []});
     }
   },
   fetchFacilityById: async () => {

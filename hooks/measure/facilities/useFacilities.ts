@@ -74,8 +74,10 @@ export function useFacilities() {
   ]
 
   useEffect(() => {
+    console.log('useFacilities: Calling fetchFacilities and fetchStatuses')
     fetchFacilities()
     fetchStatuses()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

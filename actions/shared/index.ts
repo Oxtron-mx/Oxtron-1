@@ -25,12 +25,22 @@ declare global {
 export async function handleError(error: unknown): Promise<ApiResponse<any>> {
   if (axios.isAxiosError(error)) {
     console.error(`Axios error: ${error.message}`, error.response?.data);
+
+    // FastAPI puede retornar errores en formato {detail: "mensaje"} o {message: "mensaje"}
+    const errorMessage =
+      error.response?.data?.detail ||
+      error.response?.data?.message ||
+      error.message ||
+      "An error occurred while processing the request.";
+
     return {
       success: false,
       message:
-        error.response?.data?.message ||
-        "An error occurred while processing the request.",
+        typeof errorMessage === "string"
+          ? errorMessage
+          : JSON.stringify(errorMessage),
       status: error.response?.status || 500,
+      data: null,
     };
   } else {
     console.error("Unexpected error:", error);
@@ -38,6 +48,7 @@ export async function handleError(error: unknown): Promise<ApiResponse<any>> {
       success: false,
       message: (error as Error)?.message || "An unknown error occurred.",
       status: 500,
+      data: null,
     };
   }
 }

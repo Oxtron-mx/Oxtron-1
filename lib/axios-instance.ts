@@ -5,7 +5,6 @@ const axiosInstance = axios.create({
   timeout: 100000,
   headers: {
     'Content-Type': 'application/json',
-    'X-API-Key': process.env.NEXT_PUBLIC_X_API_KEY || '',
   },
 })
 

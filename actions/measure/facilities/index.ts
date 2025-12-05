@@ -5,21 +5,19 @@ import axiosInstance from "@/lib/axios-instance";
 import { Facility } from "@/lib/validation";
 // removed mock utils
 
-import {
-  API_BASE_URL,
-  getApiKey,
-  mapPropertyStatusToNumber,
-} from "@/utils/api-config";
+import { getAccessToken, mapPropertyStatusToNumber } from "@/utils/api-config";
 
 async function resolveLocationIds(
   countryName: string,
   cityName: string,
-  apiKey: string
+  token: string
 ): Promise<{ countryId: number; cityId: number }> {
   // Obtener países
-  const countriesRes = await axiosInstance.get(
-    `${API_BASE_URL}/api/catalogs/country`
-  );
+  const countriesRes = await axiosInstance.get(`/api/catalogs/country`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const countries = countriesRes.data?.data || [];
   const country = countries.find(
     (c: any) => c.name?.toLowerCase() === countryName?.toLowerCase()
@@ -28,7 +26,12 @@ async function resolveLocationIds(
 
   // Obtener ciudades del país
   const citiesRes = await axiosInstance.get(
-    `${API_BASE_URL}/api/catalogs/country/${countryId}/cities`
+    `/api/catalogs/country/${countryId}/cities`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   const cities = citiesRes.data?.data || [];
   const city = cities.find(
@@ -43,20 +46,34 @@ export async function createFacility(
   facility: Facility
 ): Promise<ApiResponse<string>> {
   try {
-    const apiKey = await getApiKey();
+    const token = await getAccessToken();
+    if (!token) {
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: null,
+      };
+    }
+
     const { countryId, cityId } = await resolveLocationIds(
       facility.country,
       facility.city,
-      apiKey
+      token
     );
     const response = await axiosInstance.post(
-      `${API_BASE_URL}/api/facilities?api_key=${apiKey}`,
+      `/api/facilities`,
       {
         name: facility.idFacility,
         description: facility.description || "",
         country_id: countryId,
         city_id: cityId,
         property_status_id: facility.propertyStatus,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
     const data = response.data?.message || (response.data as string);
@@ -76,16 +93,35 @@ export async function getFacilitiesByUserId(): Promise<
   ApiResponse<Facility[]>
 > {
   try {
-    const apiKey = await getApiKey();
-    const response = await axiosInstance.get(
-      `${API_BASE_URL}/api/facilities?api_key=${apiKey}`
-    );
+    console.log("getFacilitiesByUserId: Starting");
+    const token = await getAccessToken();
+    console.log("getFacilitiesByUserId: Token received", token ? "Yes" : "No");
+    if (!token) {
+      console.error("getFacilitiesByUserId: No token available");
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: [],
+      };
+    }
+
+    console.log("getFacilitiesByUserId: Making API call to /api/facilities/");
+    const response = await axiosInstance.get(`/api/facilities/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log("getFacilitiesByUserId: API response received", response.data);
     const apiData = response.data?.data || [];
+    console.log("getFacilitiesByUserId: API data extracted", apiData);
 
     // Mapear respuesta de API a formato de Facility
     const newData: Facility[] = apiData.map((facility: any, index: number) => ({
       idFacility: facility.name,
-      propertyStatus: mapPropertyStatusToNumber(facility.property_status),
+      propertyStatus: mapPropertyStatusToNumber(
+        facility.property_status || facility.property_status_name
+      ),
       city: facility.city_name,
       country: facility.country_name,
       active: 1,
@@ -93,6 +129,7 @@ export async function getFacilitiesByUserId(): Promise<
       idUserControl: 66,
       description: facility.description || "",
     }));
+    console.log("getFacilitiesByUserId: Mapped data", newData);
 
     return {
       success: true,
@@ -101,6 +138,7 @@ export async function getFacilitiesByUserId(): Promise<
       message: "Successfully getting facilities",
     };
   } catch (error) {
+    console.error("getFacilitiesByUserId: Error caught", error);
     return handleError(error);
   }
 }
@@ -109,10 +147,21 @@ export async function getFacilityById(
   idFacility: number
 ): Promise<ApiResponse<Facility | null>> {
   try {
-    const apiKey = await getApiKey();
-    const response = await axiosInstance.get(
-      `${API_BASE_URL}/api/facilities/${idFacility}?api_key=${apiKey}`
-    );
+    const token = await getAccessToken();
+    if (!token) {
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: null,
+      };
+    }
+
+    const response = await axiosInstance.get(`/api/facilities/${idFacility}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const apiData = response.data?.data;
 
     if (!apiData) {
@@ -127,7 +176,9 @@ export async function getFacilityById(
     // Mapear respuesta de API a formato de Facility
     const facility: Facility = {
       idFacility: apiData.name,
-      propertyStatus: mapPropertyStatusToNumber(apiData.property_status),
+      propertyStatus: mapPropertyStatusToNumber(
+        apiData.property_status_name || apiData.property_status
+      ),
       city: apiData.city_name,
       country: apiData.country_name,
       active: 1,
@@ -151,20 +202,34 @@ export async function updateFacility(
   facility: Facility
 ): Promise<ApiResponse<string>> {
   try {
-    const apiKey = await getApiKey();
+    const token = await getAccessToken();
+    if (!token) {
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: null,
+      };
+    }
+
     const { countryId, cityId } = await resolveLocationIds(
       facility.country,
       facility.city,
-      apiKey
+      token
     );
     const response = await axiosInstance.put(
-      `${API_BASE_URL}/api/facilities/${facility.idControlFacility}?api_key=${apiKey}`,
+      `/api/facilities/${facility.idControlFacility}`,
       {
         name: facility.idFacility,
         description: facility.description || "",
         country_id: countryId,
         city_id: cityId,
         property_status_id: facility.propertyStatus,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
     const data = response.data?.message || "Successfully updated facility";
@@ -184,9 +249,23 @@ export async function deleteFacility(
   idFacility: number
 ): Promise<ApiResponse<string>> {
   try {
-    const apiKey = await getApiKey();
+    const token = await getAccessToken();
+    if (!token) {
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: null,
+      };
+    }
+
     const response = await axiosInstance.delete(
-      `${API_BASE_URL}/api/facilities/${idFacility}?api_key=${apiKey}`
+      `/api/facilities/${idFacility}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     const data = response.data?.message || "Successfully deleted facility";
 

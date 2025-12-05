@@ -4,15 +4,32 @@ import {getAuthenticatedUserId, handleError} from "@/actions/shared";
 import axiosInstance from "@/lib/axios-instance";
 import {Travel} from "@/lib/validation";
 // removed mock utils
-import { API_BASE_URL, getApiKey } from "@/utils/api-config";
+import { API_BASE_URL, getAccessToken } from "@/utils/api-config";
 
 export async function createTravel(travel: Travel): Promise<ApiResponse<string>> {
   try {
-    const apiKey = await getApiKey();
-    const response = await axiosInstance.post(`${API_BASE_URL}/api/travels?api_key=${apiKey}`, {
-      name: travel.idTravel || '',
-      description: travel.description || '',
-    })
+    const token = await getAccessToken();
+    if (!token) {
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: null,
+      };
+    }
+    
+    const response = await axiosInstance.post(
+      `${API_BASE_URL}/api/travels`,
+      {
+        name: travel.idTravel || '',
+        description: travel.description || '',
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
     const data = response.data?.message || response.data as string
 
     return {
@@ -29,8 +46,24 @@ export async function createTravel(travel: Travel): Promise<ApiResponse<string>>
 
 export async function getTravelsByUserId(): Promise<ApiResponse<Travel[]>> {
   try {
-    const apiKey = await getApiKey();
-    const response = await axiosInstance.get(`${API_BASE_URL}/api/travels?api_key=${apiKey}`)
+    const token = await getAccessToken();
+    if (!token) {
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: [],
+      };
+    }
+    
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/travels`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
     const apiData = response.data?.data || []
 
     const newData: Travel[] = apiData.map((travel: any, index: number) => ({
@@ -54,8 +87,24 @@ export async function getTravelsByUserId(): Promise<ApiResponse<Travel[]>> {
 
 export async function getTravelById(idTravel: number): Promise<ApiResponse<Travel | null>> {
   try {
-    const apiKey = await getApiKey();
-    const response = await axiosInstance.get(`${API_BASE_URL}/api/travels/${idTravel}?api_key=${apiKey}`)
+    const token = await getAccessToken();
+    if (!token) {
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: null,
+      };
+    }
+    
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/travels/${idTravel}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
     const apiData = response.data?.data
 
     if (!apiData) {
@@ -88,12 +137,26 @@ export async function getTravelById(idTravel: number): Promise<ApiResponse<Trave
 
 export async function updateTravel(travel: Travel): Promise<ApiResponse<string>> {
   try {
-    const apiKey = await getApiKey();
+    const token = await getAccessToken();
+    if (!token) {
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: null,
+      };
+    }
+    
     const response = await axiosInstance.put(
-      `${API_BASE_URL}/api/travels/${travel.idControlTravel}?api_key=${apiKey}`,
+      `${API_BASE_URL}/api/travels/${travel.idControlTravel}`,
       {
         name: travel.idTravel || '',
         description: travel.description || '',
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       }
     )
     const data = response.data?.message || 'Successfully updated travel'
@@ -111,8 +174,24 @@ export async function updateTravel(travel: Travel): Promise<ApiResponse<string>>
 
 export async function deleteTravel(idTravels: number): Promise<ApiResponse<string>> {
   try {
-    const apiKey = await getApiKey();
-    const response = await axiosInstance.delete(`${API_BASE_URL}/api/travels/${idTravels}?api_key=${apiKey}`)
+    const token = await getAccessToken();
+    if (!token) {
+      return {
+        success: false,
+        status: 401,
+        message: "Authentication required",
+        data: null,
+      };
+    }
+    
+    const response = await axiosInstance.delete(
+      `${API_BASE_URL}/api/travels/${idTravels}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
     const data = response.data?.message || 'Successfully deleted travel'
 
     return {
