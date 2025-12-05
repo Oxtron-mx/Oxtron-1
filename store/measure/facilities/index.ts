@@ -1,11 +1,11 @@
-import {create} from 'zustand';
+import { create } from "zustand";
 import {
   createFacility,
   deleteFacility,
   getFacilitiesByUserId,
-  updateFacility
+  updateFacility,
 } from "@/actions/measure/facilities";
-import {Facility} from "@/lib/validation";
+import { Facility } from "@/lib/validation";
 
 type FacilityStore = {
   facilities: Facility[];
@@ -28,35 +28,43 @@ export const useFacilityStore = create<FacilityStore>((set) => ({
   facility: null,
   error: null,
   loading: false,
-  setFacilities: (facilities) => set({facilities}),
+  setFacilities: (facilities) => set({ facilities }),
   setFacility: (facility: Facility | null) => {
-    set({loading: true})
+    set({ loading: true });
     if (facility) {
       localStorage.setItem("selectedFacility", JSON.stringify(facility));
     } else {
       localStorage.removeItem("selectedFacility");
     }
     set({ facility });
-    set({loading: false})
+    set({ loading: false });
   },
-  setError: (error) => set({error}),
-  setLoading: (loading) => set({loading}),
+  setError: (error) => set({ error }),
+  setLoading: (loading) => set({ loading }),
   fetchFacilities: async () => {
-    set({loading: true});
+    set({ loading: true });
     try {
-      console.log('FacilityStore: Starting fetchFacilities');
+      console.log("FacilityStore: Starting fetchFacilities");
       const response = await getFacilitiesByUserId();
-      console.log('FacilityStore: Response received', response);
+      console.log("FacilityStore: Response received", response);
       if (response.success) {
-        set({facilities: response.data || [], error: null, loading: false});
-        console.log('FacilityStore: Facilities set', response.data);
+        set({ facilities: response.data || [], error: null, loading: false });
+        console.log("FacilityStore: Facilities set", response.data);
       } else {
-        console.error('FacilityStore: Response not successful', response);
-        set({facilities: [], error: response.message || 'Failed to fetch facilities', loading: false});
+        console.error("FacilityStore: Response not successful", response);
+        set({
+          facilities: [],
+          error: response.message || "Failed to fetch facilities",
+          loading: false,
+        });
       }
     } catch (error) {
-      console.error('FacilityStore: Error fetching facilities', error);
-      set({error: 'Failed to fetch facilities', loading: false, facilities: []});
+      console.error("FacilityStore: Error fetching facilities", error);
+      set({
+        error: "Failed to fetch facilities",
+        loading: false,
+        facilities: [],
+      });
     }
   },
   fetchFacilityById: async () => {
@@ -66,42 +74,42 @@ export const useFacilityStore = create<FacilityStore>((set) => ({
     }
   },
   createFacility: async (facility) => {
-    set({loading: true});
+    set({ loading: true });
     try {
       const response = await createFacility(facility);
       const fetchResponse = await getFacilitiesByUserId();
 
-      set({facilities: fetchResponse.data, error: null, loading: false});
+      set({ facilities: fetchResponse.data, error: null, loading: false });
 
       return response.data;
     } catch (error) {
-      set({error: 'Failed to create facility', loading: false});
+      set({ error: "Failed to create facility", loading: false });
     }
   },
   updateFacility: async (updatedFacility: Facility) => {
-    set({loading: true});
+    set({ loading: true });
     try {
       const response = await updateFacility(updatedFacility);
       const fetchResponse = await getFacilitiesByUserId();
 
-      set({facilities: fetchResponse.data, error: null, loading: false});
+      set({ facilities: fetchResponse.data, error: null, loading: false });
 
       return response.data;
     } catch (error) {
-      set({error: 'Failed to update facility', loading: false});
+      set({ error: "Failed to update facility", loading: false });
     }
   },
   deleteFacility: async (id) => {
-    set({loading: true});
+    set({ loading: true });
     try {
       const response = await deleteFacility(id);
       const fetchResponse = await getFacilitiesByUserId();
 
-      set({facilities: fetchResponse.data, error: null, loading: false});
+      set({ facilities: fetchResponse.data, error: null, loading: false });
 
       return response.data;
     } catch (error) {
-      set({error: 'Failed to delete facility', loading: false});
+      set({ error: "Failed to delete facility", loading: false });
     }
   },
 }));

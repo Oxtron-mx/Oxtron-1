@@ -1,7 +1,4 @@
-"use server";
-
 import axiosInstance from "@/lib/axios-instance";
-import { signIn, signOut } from "@/auth";
 
 export interface LoginRequest {
   email: string;
@@ -27,48 +24,43 @@ export interface UserMeResponse {
 }
 
 /**
- * Login user with email and password using NextAuth signIn.
- * 
+ * Login user with email and password.
+ *
  * @param credentials - User email and password
- * @returns true if login successful, false otherwise
+ * @returns Login response with access token
  */
-export async function login(credentials: LoginRequest): Promise<boolean> {
-  try {
-    const result = await signIn("credentials", {
-      email: credentials.email,
-      password: credentials.password,
-      redirect: false,
-    });
+export async function login(credentials: LoginRequest): Promise<LoginResponse> {
+  const formData = new URLSearchParams();
+  formData.append("username", credentials.email);
+  formData.append("password", credentials.password);
 
-    return result?.ok ?? false;
-  } catch (error) {
-    console.error("Error in login:", error);
-    return false;
-  }
-}
+  const response = await axiosInstance.post<LoginResponse>(
+    "/api/auth/login",
+    formData,
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }
+  );
 
-/**
- * Logout user by signing out from NextAuth.
- */
-export async function logout(): Promise<void> {
-  await signOut({ redirect: true, redirectTo: "/" });
+  return response.data;
 }
 
 /**
  * Get current authenticated user information.
- * 
+ *
  * @param accessToken - JWT access token
  * @returns Current user information
  */
-export async function getCurrentUser(accessToken: string): Promise<UserMeResponse> {
-  const response = await axiosInstance.get<UserMeResponse>(
-    '/api/auth/me',
-    {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-      },
-    }
-  );
+export async function getCurrentUser(
+  accessToken: string
+): Promise<UserMeResponse> {
+  const response = await axiosInstance.get<UserMeResponse>("/api/auth/me", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 
   return response.data;
 }

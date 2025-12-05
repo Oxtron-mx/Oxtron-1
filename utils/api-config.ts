@@ -8,7 +8,7 @@ export const API_BASE_URL =
 
 /**
  * Obtiene el JWT access token de la sesión actual.
- * 
+ *
  * @deprecated Use getAccessToken from utils/auth-helpers.ts instead
  * @returns Access token string or null if not authenticated
  */
